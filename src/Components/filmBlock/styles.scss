@@ -1,0 +1,58 @@
+.filmBlock {
+   margin-top: 2rem;
+
+
+   // nav
+   .nav {
+      .nav-item {
+
+         .nav-link {
+            font-size: 1.5rem;
+            transition: all 0.2s;
+            color: #000;
+            font-weight: 500;
+
+            &:hover {
+               transform: scale(1.1);
+            }
+         }
+
+
+         .active {
+            font-size: 1.8rem;
+            color: red;
+            background-color: #FFF;
+
+            &:hover {
+               transform: none;
+               cursor: default;
+            }
+         }
+
+
+      }
+   }
+
+   // tab-content
+   .tab-content {
+      .slick-slider {
+
+         .slick-arrow {
+            &::before {
+               color: #000;
+               font-size: 3rem;
+            }
+         }
+
+
+         // .slick-list {
+         //    .slick-track {
+         //       .slick-slide {
+
+         //       }
+         //    }
+         // }
+      }
+   }
+
+}

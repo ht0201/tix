@@ -1,0 +1,188 @@
+$color-primary: #fa5238;
+$color-secondary: #00ac4d;
+$color-tertiary: #9b9b9b;
+
+@mixin ageType__P {
+   height: 25px;
+   width: 50px;
+   line-height: 25px;
+   text-align: center;
+
+   background-color: $color-secondary;
+   color: #FFF;
+   font-weight: 400;
+   border-radius: 4px;
+   margin-right: 0.5rem;
+
+}
+
+.detailFilm {
+   // background-color: rgba(0, 0, 0, 0.33) !important;
+   // height: 100vh !important;
+   padding: 0;
+   position: relative;
+
+   .row,
+   .col-3,
+   .col-6 {
+      padding: 0;
+      margin: 0;
+   }
+
+   .img__cover {
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100vw;
+      height: 450px;
+      // background: linear-gradient(to top, rgb(10, 32, 41), transparent 100%);
+
+      img {
+         width: 100%;
+         height: 100%;
+         opacity: 0.2;
+      }
+   }
+
+   // infoFilm
+   .infoFilm {
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+      display: flex;
+      align-items: center;
+
+      .img {
+         flex: 0 0 25%;
+         max-width: 25%;
+
+         .img-fluid {
+            width: 100% !important;
+            height: 100% !important;
+         }
+      }
+
+      .descriptionFilm {
+         width: 100% !important;
+
+         color: #000;
+
+         .typeAndTitle {
+            align-items: center;
+
+            h5 {
+               margin-bottom: 0;
+            }
+
+            .ageType__P {
+               @include ageType__P();
+            }
+         }
+
+         .btn__muaVe {
+            padding: 0.4rem 0.8rem;
+            background-color: #fa5238;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+
+         }
+
+      }
+
+      .point__rating {
+
+         flex: 0 0 25%;
+         max-width: 25%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+
+         .point__rating__flex {
+
+
+            .point__circle {
+               border: 8px solid #555;
+               border-radius: 50%;
+               width: 100px;
+               height: 100px;
+               line-height: 100px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               margin: 0 auto;
+               margin-bottom: 0.5rem;
+
+               h4 {
+                  color: #000;
+                  font-size: 2.5rem;
+               }
+            }
+
+            .star {
+               align-items: center;
+               justify-content: center;
+               font-size: 1rem;
+               color: $color-primary;
+
+               img {
+                  width: 1rem;
+               }
+
+            }
+
+            .feedBack {
+               display: flex;
+               justify-content: center;
+               align-items: center
+            }
+         }
+
+
+      }
+
+   }
+
+   //  tab-nav
+   // nav 
+   .infoRapChieuFilm {
+      .rap__lichChieu {
+         margin: 0 auto;
+         width: 100%;
+
+         .nav {
+            // background-color: rgba(0, 0, 0, 0.878) !important;
+
+
+            .nav-item {
+               .nav-link {
+                  font-size: 1.1rem;
+                  transition: all 0.2s;
+                  color: #000;
+                  font-weight: 500;
+
+                  &:hover {
+                     transform: scale(1.1);
+                  }
+               }
+
+
+               .active {
+                  font-size: 1.3rem;
+                  color: red;
+                  background-color: transparent;
+
+                  &:hover {
+                     transform: none;
+                     cursor: default;
+                  }
+               }
+            }
+         }
+
+
+
+      }
+   }
+
+
+}

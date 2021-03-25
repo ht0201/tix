@@ -1,0 +1,1 @@
+export const GET_LIST_TICKET = "GET_LIST_TICKET";

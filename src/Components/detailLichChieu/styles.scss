@@ -1,0 +1,236 @@
+.lichChieu {
+   .col-3 {
+      flex: 0 0 25%;
+      max-width: 25%;
+   }
+
+   height: 40rem;
+
+   .rap__info {
+      padding: 0;
+      height: 100%;
+
+      .rap__list {
+         list-style: none;
+         margin-bottom: 0;
+
+
+         .rap__item {
+            display: flex;
+            align-items: center;
+            // justify-content: center;
+            padding: 0.8rem;
+            border-bottom: 1px solid #FFF;
+            opacity: 0.5;
+            height: 4.5rem;
+            transition: 0.2s all;
+
+            img {
+               width: 3rem;
+               height: 3rem;
+
+            }
+
+            p {
+               color: #000;
+               margin-bottom: 0;
+               margin-left: 0.5rem;
+            }
+
+            &:hover {
+               opacity: 1;
+               cursor: pointer;
+
+            }
+
+            &.active {
+               opacity: 1;
+               background-color: #FFF;
+            }
+
+         }
+
+      }
+   }
+
+   // RAP
+   .listDayOfWeek {
+      padding: 0;
+      margin: 0;
+      border-left: 1px solid #AAA;
+      height: 100%;
+
+      //       ::-webkit-scrollbar {
+      //    height: 5px;
+      // }
+
+      // //bg cua cay scrollbar
+      // ::-webkit-scrollbar-track {
+      //    background: #f1f1f1;
+      // }
+
+      // // thanh drag keo
+      // ::-webkit-scrollbar-thumb {
+      //    background: #888;
+      //    height: 12px !important;
+      //    border-radius: 5px;
+      // }
+
+
+      // dayOfWeek
+      .dayOfWeek {
+         height: 4.5rem;
+         display: flex;
+         align-items: center;
+         padding: 0.5rem 0;
+         overflow-x: auto;
+         overflow-y: hidden;
+         width: 100%;
+
+         .listDay {
+            list-style: none;
+            margin-bottom: 0;
+
+            display: inline-flex;
+            // justify-content: space-between;
+            // width: 200%;
+
+
+            .dayItem {
+               text-align: center;
+               width: 6rem;
+               display: inline-block;
+
+
+               p,
+               h5 {
+                  margin-bottom: 0;
+               }
+
+               &:hover {
+                  cursor: pointer;
+               }
+
+
+            }
+
+            // .active {
+
+            //    p,
+            //    h5 {
+            //       color: red;
+            //    }
+            // }
+         }
+      }
+
+
+
+
+      // projection : rap va suat chieu
+      .projection {
+         min-height: 621px;
+         overflow-y: auto;
+         overflow-x: hidden;
+         height: 100%;
+
+         .projection__list {
+            padding: 0;
+            border: none !important;
+
+            .card {
+               padding-top: 0.5rem;
+               padding-bottom: 0.5rem;
+
+
+               .card-header {
+                  display: flex;
+                  align-items: center;
+                  border-bottom: 0;
+
+                  .img__card {
+                     width: 50px;
+                     height: 50px;
+
+                     img {
+                        width: 100%;
+                        height: 100%;
+                     }
+                  }
+
+                  .address {
+                     padding-left: 0.5rem;
+
+                     h5 {
+                        font-size: 1rem;
+                        margin-bottom: 0;
+
+                        b {
+                           color: #00ac4d;
+                        }
+                     }
+
+                     p {
+                        font-size: 0.8rem;
+                        color: #888;
+                        margin-bottom: 0;
+                     }
+                  }
+
+                  &:hover {
+                     cursor: pointer;
+                  }
+               }
+
+               .acc__collapse {
+
+
+                  .card-body {
+                     padding-top: 0.5rem;
+                     padding-bottom: 0.5rem;
+
+
+                     .listSuatChieu {
+                        display: flex;
+                        justify-content: space-between;
+                        list-style: none;
+                        width: auto;
+
+                        .suatChieu {
+                           border: 1px solid #DDD;
+                           border-radius: 10px;
+
+                           text-align: center;
+                           padding: 0.3rem;
+
+                           width: 25%;
+                           height: auto;
+
+                           .suatChieuIn {
+                              font-size: 1.1rem;
+                              font-weight: 600;
+                              color: #00ac4d;
+                           }
+
+                           .suatChieuOut {
+                              font-size: 0.9rem;
+                              color: #777;
+                           }
+
+                           &:hover,
+                           &:hover .suatChieuIn {
+                              color: red;
+                              cursor: pointer;
+
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+
+
+}

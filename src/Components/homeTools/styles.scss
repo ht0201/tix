@@ -1,0 +1,139 @@
+@mixin angleDown {
+   position: absolute;
+   right: 0 !important;
+   margin-left: 0;
+   color: #aaaaaa;
+   margin-right: 0.5rem;
+}
+
+* {
+   padding: 0;
+   margin: 0;
+}
+
+.homeTools {
+   position: relative;
+   width: 100%;
+
+
+   .row {
+      padding: 1rem;
+      border: 1px solid rgb(247, 244, 244);
+      border-radius: 10px;
+      box-shadow: 0 0 10px #888888;
+
+      position: absolute;
+      top: -4rem;
+      left: 0%;
+      width: 100%;
+      background: #FFF;
+
+      .col-4 {
+         padding: 0;
+         display: flex;
+         align-items: center;
+
+         .form-select {
+            width: 100%;
+
+
+            .drpFilm {
+               border: none;
+               width: 100%;
+               outline: none;
+
+
+               .dropdown-menu {
+                  .dropdown-item {
+                     background-color: #FFF;
+                     color: #000;
+
+                     &:hover {
+                        background-color: rgb(139, 191, 215);
+                        cursor: pointer;
+                     }
+
+                  }
+               }
+
+               .btnFilm {
+                  display: flex;
+                  align-items: center;
+
+                  .icon__angleDown {
+                     @include angleDown();
+                  }
+               }
+            }
+         }
+
+      }
+
+      .col-2 {
+         padding: 0;
+         display: flex;
+         align-items: center;
+
+         .form-select {
+            width: 100%;
+
+            .drpRap {
+               border: none;
+               width: 100%;
+               outline: none;
+
+               option {
+                  color: #000;
+               }
+
+            }
+
+         }
+
+         .form-select {
+            width: 100%;
+
+            .drpNgayXem {
+               border: none;
+               width: 100%;
+               outline: none;
+
+               .btnNgayXem {
+                  display: flex;
+                  align-items: center;
+
+                  .icon__angleDown {
+                     @include angleDown();
+                  }
+               }
+            }
+         }
+
+         .form-select {
+            width: 100%;
+
+            .drpGioXem {
+               border: none;
+               width: 100%;
+               outline: none;
+
+               .btnGioXem {
+                  display: flex;
+                  align-items: center;
+
+                  .icon__angleDown {
+                     @include angleDown();
+                  }
+               }
+            }
+
+         }
+
+         .btn__muaVe {
+            display: flex;
+            justify-content: center;
+         }
+
+      }
+   }
+}
