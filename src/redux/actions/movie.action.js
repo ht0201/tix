@@ -24,7 +24,7 @@ export const getListMovieShowingAPI = () => {
     axios({
       method: "GET",
       url:
-        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP02",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
     })
       .then((res) => {
         // console.log(res.data);
@@ -242,7 +242,7 @@ export const getListMovieComingSoonAPI = () => {
     axios({
       method: "GET",
       url:
-        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP02",
     })
       .then((res) => {
         // console.log(res.data);

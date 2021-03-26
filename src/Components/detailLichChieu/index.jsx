@@ -61,58 +61,58 @@ const DetailLichChieu = () => {
   }, []);
 
   function renderRap() {
-    return lichChieuTheoHeThongRap?.cumRapChieu?.map((rap, indexRap) => {
-      return (
-        <Accordion defaultActiveKey="0" key={indexRap}>
-          <Card>
-            <Accordion.Toggle as={Card.Header} eventKey="0">
-              <div className="img__card">
-                <img src={`/images/${rap.maCumRap}.png`} alt="img-bhd" />
-              </div>
-              <div className="address">
-                <h5>
-                  <b>{rap.tenCumRap.split("-").shift()} </b> -{" "}
-                  {rap.tenCumRap.split("-").pop()}
-                </h5>
-                <p></p>
-              </div>
-            </Accordion.Toggle>
-            <Accordion.Collapse eventKey="0" className="acc__collapse">
-              <Card.Body>
-                <h6>2D Digital</h6>
-                <div className="listSuatChieu row">
-                  {renderListSuatChieu(rap)}
+    return listNgayChieu?.map((rap, indexRap) => {
+      if (rap.lcFilter.length !== 0) {
+        return (
+          <Accordion defaultActiveKey="0" key={indexRap}>
+            <Card>
+              <Accordion.Toggle as={Card.Header} eventKey="0">
+                <div className="img__card">
+                  <img src={`/images/${rap.maCumRap}.png`} alt="img-bhd" />
                 </div>
-              </Card.Body>
-            </Accordion.Collapse>
-          </Card>
-        </Accordion>
-      );
+                <div className="address">
+                  <h5>
+                    <b>{rap.tenCumRap.split("-").shift()} </b> -{" "}
+                    {rap.tenCumRap.split("-").pop()}
+                  </h5>
+                  <p></p>
+                </div>
+              </Accordion.Toggle>
+              <Accordion.Collapse eventKey="0" className="acc__collapse">
+                <Card.Body>
+                  <h6>2D Digital</h6>
+                  <div className="listSuatChieu row">
+                    {renderListSuatChieu(rap)}
+                  </div>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+        );
+      }
     });
   }
 
-  function renderListSuatChieu() {
-    return listNgayChieu?.map((lc, indexLc) => {
-      return lc?.map((itemLc, index) => {
-        const timeIn = format("hh:mm", new Date(itemLc?.ngayChieuGioChieu));
-        const changeMinute = moment.duration(timeIn, "hh:mm").asMinutes("mm");
-        const plus = changeMinute + thoiLuong;
-        const out = moment
-          .utc()
-          .startOf("day")
-          .add({ minutes: plus })
-          .format("H:mm");
+  function renderListSuatChieu(rap) {
+    return rap.lcFilter?.map((itemLc, index) => {
+      const timeIn = format("hh:mm", new Date(itemLc?.ngayChieuGioChieu));
+      const changeMinute = moment.duration(timeIn, "hh:mm").asMinutes("mm");
+      const plus = changeMinute + thoiLuong;
+      const out = moment
+        .utc()
+        .startOf("day")
+        .add({ minutes: plus })
+        .format("H:mm");
 
-        return (
-          <div className="suatChieu col-3" key={index}>
-            <span className="suatChieuIn">
-              {" "}
-              {format("hh:mm", new Date(itemLc?.ngayChieuGioChieu))} ~
-            </span>
-            <span className="suatChieuOut"> {out}</span>
-          </div>
-        );
-      });
+      return (
+        <div className="suatChieu col-3" key={index}>
+          <span className="suatChieuIn">
+            {" "}
+            {format("hh:mm", new Date(itemLc?.ngayChieuGioChieu))} ~
+          </span>
+          <span className="suatChieuOut"> {out}</span>
+        </div>
+      );
     });
   }
 

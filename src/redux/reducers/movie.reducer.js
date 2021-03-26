@@ -17,8 +17,9 @@ const _ = require("lodash");
 const initialState = {
   movieListShowing: [],
   movieDetail: {},
-  thoiLuong: "",
+  thoiLuong: 120,
   lichChieuTheoHeThongRap: {},
+  listNgayChieu: [],
   listHeThongRap: [],
   listCumRap: [],
   listMovieRap: {},
@@ -28,7 +29,6 @@ const initialState = {
   listNgayChieuGioChieu: [],
   listGioChieuOpt: [],
   movieListComingSoon: [],
-  listNgayChieu: [],
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -107,20 +107,22 @@ const movieReducer = (state = initialState, action) => {
         }
       );
 
+      console.log("lichChieuTheoHeThongRap", lichChieuTheoHeThongRap);
+
       const listNgayChieu = lichChieuTheoHeThongRap.cumRapChieu.map(
         (cumRap, indexLCP) => {
-          return cumRap.lichChieuPhim.filter((lc) => {
-            const rs =
+          const lcFilter = cumRap.lichChieuPhim.filter((lc) => {
+            return (
               lc.ngayChieuGioChieu.slice(0, 10) ===
-              payload.ngayChieu.slice(0, 10);
-            return rs;
+              payload.ngayChieu.slice(0, 10)
+            );
           });
+          console.log("lcFilter", lcFilter);
+          return { ...cumRap, lcFilter };
         }
       );
 
       console.log("listNgayChieu", listNgayChieu);
-
-      console.log("lichChieuTheoHeThongRap", lichChieuTheoHeThongRap);
 
       return {
         ...state,
@@ -149,6 +151,14 @@ const movieReducer = (state = initialState, action) => {
       });
 
       console.log("listMovie", listMovie);
+
+      const list = state.movieDetail;
+
+      const thoiLuong = list.lichChieu?.find(
+        (movie) => movie.maPhim === JSON.parse(payload.maPhim)
+      );
+
+      console.log("thoiLuong", thoiLuong);
 
       return { ...state, listMovieRap: listMovie };
     }

@@ -5,6 +5,8 @@ import format from "date-format";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import { getListMovieRapAPI } from "../../redux/actions/movie.action";
+import moment from "moment";
+import "./styles.scss";
 
 export default function SuatChieuRap() {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ export default function SuatChieuRap() {
   }, [listMovieTheoRap]);
 
   const listMovieRap = useSelector((state) => state).movieReducer.listMovieRap;
+  const thoiLuong = useSelector((state) => state).movieReducer.thoiLuong;
 
   function renderUnqMovie() {
     return listMovieRap?.danhSachPhim?.map((movie, indexM) => {
@@ -49,17 +52,41 @@ export default function SuatChieuRap() {
   }
 
   function renderMovieSuatChieu(movieLChieu) {
-    return movieLChieu.map((lchieu, indexLc) => {
+    console.log("movieLChieu", movieLChieu);
+    return movieLChieu?.map((lc, index) => {
+      const timeIn = format("hh:mm", new Date(lc?.ngayChieuGioChieu));
+      const changeMinute = moment.duration(timeIn, "hh:mm").asMinutes("mm");
+      const plus = changeMinute + thoiLuong;
+      const out = moment
+        .utc()
+        .startOf("day")
+        .add({ minutes: plus })
+        .format("H:mm");
+
       return (
-        <div className="suatChieu" key={indexLc}>
+        <div className="suatChieu col-3" key={index}>
           <span className="suatChieuIn">
-            {format("hh:mm", new Date(lchieu.ngayChieuGioChieu))} ~
+            {" "}
+            {format("hh:mm", new Date(lc?.ngayChieuGioChieu))} ~
           </span>
-          <span className="suatChieuOut"> 15:08</span>
+          <span className="suatChieuOut"> {out}</span>
         </div>
       );
     });
   }
+
+  // function renderMovieSuatChieu(movieLChieu) {
+  //   return movieLChieu.map((lchieu, indexLc) => {
+  //     return (
+  //       <div className="suatChieu" key={indexLc}>
+  //         <span className="suatChieuIn">
+  //           {format("hh:mm", new Date(lchieu.ngayChieuGioChieu))} ~
+  //         </span>
+  //         <span className="suatChieuOut"> 15:08</span>
+  //       </div>
+  //     );
+  //   });
+  // }
 
   return <>{renderUnqMovie()}</>;
 }
