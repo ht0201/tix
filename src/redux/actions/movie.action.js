@@ -190,44 +190,6 @@ export const getListTimeFilterAPI = (maLichChieu) => {
   };
 };
 
-// export const getListHourFilterAction = (listTimeFilter) => {
-//   return {
-//     type: GET_LIST_HOUR_FILTER,
-//     payload: listTimeFilter,
-//   };
-// };
-
-// export const getListHourFilterAPI = (maLichChieu) => {
-//   console.log(maLichChieu);
-//   return (dispacth) => {
-//     dispacth(getListHourFilterAction(maLichChieu));
-//   };
-// };
-
-// export const getListLichChieuFirtsAction = (listRapFilter) => {
-//   return {
-//     type: GET_LIST_RAP_FILTER,
-//     payload: listRapFilter,
-//   };
-// };
-
-// export const getListRapFilterAPI = (maPhim) => {
-//   console.log(maPhim);
-//   return (dispacth) => {
-//     axios({
-//       method: "GET",
-//       url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`,
-//     })
-//       .then((res) => {
-//         console.log(res.data);
-//         dispacth(getListLichChieuFirtsAction(res.data));
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   };
-// };
-
 // List film sap chieu
 export const getListMovieComingSoonAction = (listMovieSapChieu) => {
   return {

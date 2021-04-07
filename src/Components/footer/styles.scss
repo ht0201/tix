@@ -1,0 +1,127 @@
+footer {
+   background-color: #222;
+
+   .container {
+      padding-top: 1rem;
+
+      .row {
+         position: relative;
+
+
+         .item {
+            h5 {
+               color: #FFF;
+            }
+
+            .row__tix {
+               ul {
+                  li {
+                     list-style: none;
+
+                     a {
+                        transition: 0.2s all;
+                        color: #949494;
+
+                        &:hover {
+                           text-decoration: none;
+                           color: #FFF;
+                        }
+                     }
+
+                  }
+               }
+            }
+
+            .row__doitac {
+               display: grid;
+               grid-template-columns: repeat(5, 1fr);
+
+               .img {
+                  padding-left: 15px;
+                  padding-right: 15px;
+                  margin-bottom: 1rem;
+
+                  img {
+                     width: 35px;
+                     height: 35px;
+                     line-height: 35px;
+                     border-radius: 50%;
+
+                     &:hover {
+                        cursor: pointer;
+                        opacity: 0.5;
+                     }
+                  }
+               }
+            }
+
+            .row__mobile__social {
+               .col-6 {
+                  text-align: center;
+
+                  ul {
+                     display: flex;
+                     justify-content: center;
+
+                     li {
+                        margin: 0 0.5rem;
+
+                        img {
+                           width: 35px;
+                           height: 40px;
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+
+      .row__topFooter {
+         border-bottom: 1px solid #949494;
+         width: 100%;
+      }
+
+      .row__address {
+         display: flex;
+
+         .col-9 {
+            display: flex;
+            padding: 0;
+
+            img {
+               height: 3rem;
+               width: 6rem;
+               border-radius: 10px;
+            }
+
+            .contact {
+               padding-left: 1rem;
+
+               h6 {
+                  color: #FFF;
+               }
+
+               p {
+                  color: #949494;
+                  margin-bottom: 0.2rem;
+               }
+            }
+         }
+
+         .boCongThuong {
+            padding: 0;
+            height: auto;
+            max-width: 0;
+            margin-right: 0;
+            width: 5rem;
+
+
+            .img__boCongThuong {
+               height: 4rem;
+               width: 12rem;
+            }
+         }
+      }
+   }
+}

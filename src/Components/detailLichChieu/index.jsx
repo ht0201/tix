@@ -10,10 +10,11 @@ import {
   getListHeThongRapAPI,
   getListLichChieuHTRAPI,
 } from "../../redux/actions/movie.action";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import moment from "moment";
 import { useState } from "react";
+import Guard from "../../HOC/guard";
 moment().format();
 
 const DetailLichChieu = () => {
@@ -97,21 +98,24 @@ const DetailLichChieu = () => {
     return rap.lcFilter?.map((itemLc, index) => {
       const timeIn = format("hh:mm", new Date(itemLc?.ngayChieuGioChieu));
       const changeMinute = moment.duration(timeIn, "hh:mm").asMinutes("mm");
-      const plus = changeMinute + thoiLuong;
-      const out = moment
+      const outMinute = changeMinute + thoiLuong;
+      const timeOut = moment
         .utc()
         .startOf("day")
-        .add({ minutes: plus })
+        .add({ minutes: outMinute })
         .format("H:mm");
 
       return (
-        <div className="suatChieu col-3" key={index}>
+        <NavLink
+          className="suatChieu col-3"
+          key={index}
+          to={`/booking/${itemLc.maLichChieu} `}
+        >
           <span className="suatChieuIn">
-            {" "}
             {format("hh:mm", new Date(itemLc?.ngayChieuGioChieu))} ~
           </span>
-          <span className="suatChieuOut"> {out}</span>
-        </div>
+          <span className="suatChieuOut"> {timeOut}</span>
+        </NavLink>
       );
     });
   }
@@ -178,10 +182,7 @@ const DetailLichChieu = () => {
         </div>
         <div className="col-9 listDayOfWeek">
           <div className="dayOfWeek">
-            <ul className="listDay">
-              {renderNgayChieu()}
-              {/* {renderNgayChieu(lichChieu.maPhim)} */}
-            </ul>
+            <ul className="listDay">{renderNgayChieu()}</ul>
           </div>
           <div className="tab-content projection">
             <div

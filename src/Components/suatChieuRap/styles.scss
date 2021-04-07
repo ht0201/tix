@@ -9,6 +9,10 @@
                         .suatChieu {
                            height: auto;
                            margin-right: 0;
+
+                           &:hover {
+                              text-decoration: none;
+                           }
                         }
                      }
                   }

@@ -140,7 +140,7 @@ export default function LichChieu() {
 
   return (
     <>
-      <div className="container d-flex lichChieu">
+      <div className="container d-flex lichChieu" id="lichChieu">
         <div className="row">
           <div
             className="nav flex-column nav-pills col-1"

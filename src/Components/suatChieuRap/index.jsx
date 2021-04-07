@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 import { getListMovieRapAPI } from "../../redux/actions/movie.action";
 import moment from "moment";
 import "./styles.scss";
+import { NavLink } from "react-router-dom";
 
 export default function SuatChieuRap() {
   const dispatch = useDispatch();
@@ -64,29 +65,20 @@ export default function SuatChieuRap() {
         .format("H:mm");
 
       return (
-        <div className="suatChieu col-3" key={index}>
+        <NavLink
+          to={`/booking/${lc.maLichChieu}`}
+          className="suatChieu col-3"
+          key={index}
+        >
           <span className="suatChieuIn">
             {" "}
             {format("hh:mm", new Date(lc?.ngayChieuGioChieu))} ~
           </span>
           <span className="suatChieuOut"> {out}</span>
-        </div>
+        </NavLink>
       );
     });
   }
-
-  // function renderMovieSuatChieu(movieLChieu) {
-  //   return movieLChieu.map((lchieu, indexLc) => {
-  //     return (
-  //       <div className="suatChieu" key={indexLc}>
-  //         <span className="suatChieuIn">
-  //           {format("hh:mm", new Date(lchieu.ngayChieuGioChieu))} ~
-  //         </span>
-  //         <span className="suatChieuOut"> 15:08</span>
-  //       </div>
-  //     );
-  //   });
-  // }
 
   return <>{renderUnqMovie()}</>;
 }

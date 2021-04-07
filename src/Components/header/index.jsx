@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { red } from "@material-ui/core/colors";
 import { NavLink } from "react-router-dom";
+import "./styles";
 
 // import { withStyles } from "@material-ui/core";
 // import styles from "./styles";
@@ -37,13 +38,19 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
   const classes = useStyles();
 
+  // function handleClick() {
+  //       $(document).ready(function(){
+  //     $('html,body').animate({scrollTop:$(location.hash).offset().‌​top}, 500);
+  //   });
+  // }
+
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <NavLink to="/" className="navbar-brand" href="dddd">
             <img
-              src="./images/web-logo.png"
+              src="/images/web-logo.png"
               alt="logo"
               className={classes.setWidthHeight}
             />
@@ -62,14 +69,14 @@ export default function Header() {
           <div className="collapse navbar-collapse " id="collapsibleNavId">
             <ul className="navbar-nav m-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                <NavLink to="/a" className="nav-link" href="sass">
+                <a href="#movieCatelogy" className="nav-link">
                   Lich chieu <span className="sr-only">(current)</span>
-                </NavLink>
+                </a>
               </li>
               <li className="nav-item">
-                <NavLink to="/" className="nav-link" href="sdsd">
+                <a href="#lichChieu" className="nav-link">
                   Cum rap
-                </NavLink>
+                </a>
               </li>
               <li className="nav-item">
                 <NavLink to="/" className="nav-link" href="sdsd">
@@ -90,8 +97,13 @@ export default function Header() {
                   Dang nhap <span className="sr-only">(current)</span>
                 </NavLink>
               </li>
+              <li className="nav-item ">
+                <NavLink to="/sign-up" className="nav-link" href="sass">
+                  Dang ky <span className="sr-only">(current)</span>
+                </NavLink>
+              </li>
               <li className="nav-item">
-                <NavLink to="/" className="nav-link" href="sdsd">
+                <NavLink to="/" className="nav-link" href="aaa">
                   Ho chi minh
                 </NavLink>
               </li>

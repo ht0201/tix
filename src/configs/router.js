@@ -1,10 +1,10 @@
 import Home from "./../pages/home";
 import Detail from "./../pages/detail";
-import LoginIn from "../pages/Login";
+import Login from "../pages/Login";
 import DashBoard from "../pages/dashboard";
 import User from "../pages/user";
 import Booking from "../pages/booking";
-import Login from "../pages/Login";
+import SignUp from "../pages/sign-up";
 
 export const mainRouter = [
   {
@@ -24,9 +24,14 @@ export const mainRouter = [
     Components: Booking,
   },
   {
-    path: "/sign-in",
+    path: "/login",
     exact: false,
     Components: Login,
+  },
+  {
+    path: "/sign-up",
+    exact: false,
+    Components: SignUp,
   },
 ];
 

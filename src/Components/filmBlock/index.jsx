@@ -9,7 +9,7 @@ import ListFilmSapChieu from "../filmSapChieu";
 
 export default function FilmBlock() {
   return (
-    <div className="filmBlock">
+    <div className="filmBlock" id="movieCatelogy">
       {/* Nav pills */}
       <ul className="nav nav-pills justify-content-center align-items-center">
         <li className="nav-item">

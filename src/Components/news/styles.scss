@@ -1,0 +1,101 @@
+.nav__news {
+   justify-content: center;
+
+   .nav-item {
+      margin: 0 1rem;
+
+      .nav-link {
+         color: #000;
+         background-color: #FFF;
+         transition: 0.2s all;
+         font-size: 1.3rem;
+         font-weight: 600;
+
+         &:hover {
+            transform: scale(1.2);
+         }
+      }
+
+
+      .active {
+         color: red !important;
+         background-color: #FFF !important;
+         font-size: 1.5rem;
+
+         &:hover {
+            transform: none;
+            cursor: default;
+         }
+      }
+
+   }
+}
+
+@mixin itemCard {
+   .item {
+      .MuiPaper-root {
+         max-width: 100%;
+         box-shadow: none;
+
+         svg {
+            color: #CCC;
+            font-size: 1.2rem;
+         }
+
+         span {
+            color: #CCC;
+            margin-right: 1rem;
+         }
+
+         h2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+         }
+
+         .MuiCardContent-root {
+            height: 10rem;
+         }
+      }
+   }
+}
+
+.tab-content {
+   height: auto;
+
+   .tab-pane {
+      .top2 {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         grid-gap: 20px;
+         @include itemCard();
+      }
+
+      .bot3 {
+         display: grid;
+         grid-template-columns: 1fr 1fr 1fr;
+         grid-gap: 20px;
+         @include itemCard();
+
+         .item {
+            .card {
+               display: flex;
+               flex-direction: row;
+               align-items: center;
+               border: none;
+
+               img {
+                  width: 70px;
+                  height: 70px;
+               }
+
+               &:hover {
+                  cursor: pointer;
+               }
+            }
+         }
+
+      }
+   }
+}

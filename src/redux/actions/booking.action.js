@@ -1,4 +1,7 @@
-import { GET_LIST_TICKET } from "./../constants/booking.constants";
+import {
+  CHOICE_CHAIR,
+  GET_LIST_TICKET,
+} from "./../constants/booking.constants";
 import axios from "axios";
 
 export const getListTicketAction = (listTicket) => {
@@ -20,5 +23,19 @@ export const getListTicketAPI = (maLichChieu) => {
     } catch (err) {
       console.log(err);
     }
+  };
+};
+
+export const getChoiceChairAction = (choiceChair) => {
+  return {
+    type: CHOICE_CHAIR,
+    payload: choiceChair,
+  };
+};
+
+export const getChoiceChairAPI = (maGhe) => {
+  console.log("maGhe API", maGhe);
+  return (dispatch) => {
+    dispatch(getChoiceChairAction(maGhe));
   };
 };

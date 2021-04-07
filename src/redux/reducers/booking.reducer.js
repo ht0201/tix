@@ -1,8 +1,13 @@
-import { GET_LIST_TICKET } from "./../constants/booking.constants";
+import {
+  CHOICE_CHAIR,
+  GET_LIST_TICKET,
+} from "./../constants/booking.constants";
 import movieReducer from "./movie.reducer";
 
 const initialState = {
-  listTicket: [],
+  chairList: [],
+  movieInfo: {},
+  listChairChoice: [],
 };
 
 const bookingReducer = (state = initialState, action) => {
@@ -10,9 +15,51 @@ const bookingReducer = (state = initialState, action) => {
   switch (type) {
     case GET_LIST_TICKET: {
       console.log(payload);
-      console.log("lich chieu", movieReducer.state.lichChieuChoice);
-      const ticket = movieReducer.state.lichChieuChoice;
-      return { ...state, listTicket: ticket };
+
+      return {
+        ...state,
+        chairList: payload.danhSachGhe,
+        movieInfo: payload.thongTinPhim,
+      };
+    }
+
+    case CHOICE_CHAIR: {
+      console.log("chair", payload);
+      const listChoice = state.listChairChoice;
+
+      const index = state.chairList.findIndex(
+        (chair) => chair.maGhe === payload
+      );
+
+      if (index !== -1) {
+        //ghe hien tai
+        const currentChair = state.chairList[index];
+
+        // !under = true
+        const newChair = { ...currentChair, dangChon: !currentChair.dangChon };
+
+        // update
+        state.chairList[index] = newChair;
+
+        // check lai listChairChoice
+        // choice: push vo arr, If tim thay (khac -1): del khoi arr, neu ko tim thay ( -1) thi push
+
+        const indexChoice = state.listChairChoice.findIndex(
+          (chair) => chair.maGhe === payload
+        );
+
+        if (indexChoice !== -1) {
+          listChoice.splice(indexChoice, 1);
+        } else {
+          listChoice.push(newChair);
+        }
+
+        console.log("listChairChoice", state.listChairChoice);
+
+        return { ...state, listChairChoice: listChoice };
+      }
+
+      break;
     }
 
     default:
