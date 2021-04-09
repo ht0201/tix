@@ -1,3 +1,43 @@
 * {
-   scroll-behavior: smooth !important;
+   scroll-behavior: smooth;
+}
+
+
+header {
+   nav {
+      .header__right {
+         ul {
+            li {
+               position: relative;
+
+               &:hover {
+                  cursor: pointer;
+               }
+
+               &:hover span {
+                  cursor: pointer;
+                  display: block;
+                  color: #FFF;
+                  position: absolute;
+                  bottom: -2.5rem;
+                  left: 0;
+                  padding: 0.5rem;
+                  background: #999;
+                  font-weight: 600;
+                  border-radius: 5px;
+               }
+
+               b {
+                  width: 8rem;
+               }
+
+
+               span {
+                  display: none;
+
+               }
+            }
+         }
+      }
+   }
 }

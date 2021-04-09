@@ -48,7 +48,24 @@ export const getSignUpAPI = (userSU, history) => {
       alert("Them thanh cong");
       history.push("/Login");
       //   dispatch(getSignUpAction(res.data));
+      //   localStorage.setItem("userSignUp", JSON.stringify(res.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
+export const checkLoginAction = (userLogin) => {
+  return {
+    type: "CHECK_LOGIN",
+    payload: userLogin,
+  };
+};
+
+export const checkLoginAPI = (userLogin) => {
+  return async (dispatch) => {
+    try {
+      dispatch(checkLoginAction(userLogin));
       //   localStorage.setItem("userSignUp", JSON.stringify(res.data));
     } catch (err) {
       console.log(err);

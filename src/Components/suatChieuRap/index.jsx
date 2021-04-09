@@ -53,7 +53,6 @@ export default function SuatChieuRap() {
   }
 
   function renderMovieSuatChieu(movieLChieu) {
-    console.log("movieLChieu", movieLChieu);
     return movieLChieu?.map((lc, index) => {
       const timeIn = format("hh:mm", new Date(lc?.ngayChieuGioChieu));
       const changeMinute = moment.duration(timeIn, "hh:mm").asMinutes("mm");

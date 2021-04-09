@@ -14,12 +14,12 @@ export default function FilmBlock() {
       <ul className="nav nav-pills justify-content-center align-items-center">
         <li className="nav-item">
           <a className="nav-link active" data-toggle="pill" href="#home">
-            Dang chieu
+            Đang chiếu
           </a>
         </li>
         <li className="nav-item">
           <a className="nav-link" data-toggle="pill" href="#menu1">
-            Sap chieu
+            Sắp chiếu
           </a>
         </li>
       </ul>

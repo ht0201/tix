@@ -42,41 +42,6 @@ const movieReducer = (state = initialState, action) => {
     }
 
     case GET_FILM_DETAIL: {
-      // const listHeThongRap = state.listHeThongRap;
-      // const lichChieu = payload.lichChieu;
-      // console.log("listHeThongRap", listHeThongRap);
-      // console.log("payload", payload);
-
-      // const listLichChieu = lichChieu.map((movieRap, indexMovieRap) => {
-      //   return _.omit(movieRap, ["maLichChieu", "ngayChieuGioChieu"]);
-      // });
-
-      // console.log(listLichChieu);
-
-      // const uniqueLichChieu1 = _.uniqBy(listLichChieu, "maRap");
-      // console.log("uniqueLichChieu1", uniqueLichChieu1);
-
-      // const listTimeChieu = lichChieu.map((movieRap, indexMovieRap) => ({
-      //   maRap: movieRap.maRap,
-      //   thoiLuong: movieRap.thoiLuong,
-      //   gioChieu: format("hh:mm", new Date(movieRap.ngayChieuGioChieu)),
-      // }));
-
-      // console.log(listTimeChieu);
-
-      // const uniqueGioChieu = listTimeChieu?.filter((rap, index) => {
-      //   const _string = JSON.stringify(rap);
-      //   return (
-      //     index ===
-      //     listTimeChieu?.findIndex((obj) => {
-      //       return JSON.stringify(obj) === _string;
-      //     })
-      //   );
-      // });
-      // console.log("uniqueGioChieu", uniqueGioChieu);
-
-      // const unique = [...new Set(lichChieu.map((item) => item.maRap))];
-      // console.log("unique", unique);
       console.log(payload);
 
       const thoiLuong = payload.lichChieu?.find(
@@ -89,25 +54,13 @@ const movieReducer = (state = initialState, action) => {
     }
 
     case GET_LIST_LICH_CHIEU_HTR_DETAIL: {
-      console.log("listLichChieuHTR", payload);
-
       const lichChieuTheoHeThongRap = payload.listMovieTheoHeThongRap.heThongRapChieu?.find(
         (cumRap) => {
           const listHTRFilter = cumRap.maHeThongRap === payload.maHeThongRap;
           console.log("listHTRFilter", listHTRFilter);
           return listHTRFilter;
-
-          //  .cumRapChieu?.map((cumRap, indexLc) => {
-          //   return cumRap.lichChieuPhim?.filter((lc) => {
-          //     const ngayChieuFilter =
-          //       lc.ngayChieuGioChieu.slice(0, 10) === payload.ngayChieu;
-          //     return ngayChieuFilter;
-          //   });
-          // });
         }
       );
-
-      console.log("lichChieuTheoHeThongRap", lichChieuTheoHeThongRap);
 
       const listNgayChieu = lichChieuTheoHeThongRap.cumRapChieu.map(
         (cumRap, indexLCP) => {
@@ -117,12 +70,10 @@ const movieReducer = (state = initialState, action) => {
               payload.ngayChieu.slice(0, 10)
             );
           });
-          console.log("lcFilter", lcFilter);
+
           return { ...cumRap, lcFilter };
         }
       );
-
-      console.log("listNgayChieu", listNgayChieu);
 
       return {
         ...state,
@@ -164,28 +115,6 @@ const movieReducer = (state = initialState, action) => {
     }
 
     case GET_LIST_RAP_FILTER: {
-      // console.log(payload);
-      // const arrLichChieu = payload?.lichChieu;
-
-      // const listRapFil = arrLichChieu?.map((rap, index) => ({
-      //   maPhim: rap.maPhim,
-      //   tenCumRap: rap.thongTinRap.tenCumRap,
-      // }));
-
-      // console.log(listRapFil);
-
-      // const uniqueRapFil = listRapFil?.filter((rap, index) => {
-      //   const _string = JSON.stringify(rap);
-      //   return (
-      //     index ===
-      //     listRapFil?.findIndex((obj) => {
-      //       return JSON.stringify(obj) === _string;
-      //     })
-      //   );
-      // });
-
-      // console.log(uniqueRapFil);
-
       return {
         ...state,
         listRapOpt: payload?.lichChieu,

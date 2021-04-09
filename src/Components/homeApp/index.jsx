@@ -1,9 +1,18 @@
+import Slider from "react-slick";
 import React from "react";
 import "./styles.scss";
 
 export default function HomeApp() {
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    // speed: 500,
+    autoplaySpeed: 3000,
+  };
   return (
-    <div className="homeApp">
+    <div className="homeApp" id="homeApp">
       <div className="container">
         <div className="row">
           <div className="col-6 content__app">
@@ -21,7 +30,28 @@ export default function HomeApp() {
             </p>
           </div>
           <div className="col-6 img__app">
-            <img src="./images/mobile.png" alt="" />
+            <img src="/images/mobile.png" alt="" />
+
+            <Slider {...settings} className="slider">
+              <div>
+                <img src="/images/slide1.jpg" alt="" />
+              </div>
+              <div>
+                <img src="/images/slide2.jpg" alt="" />
+              </div>
+              <div>
+                <img src="/images/slide3.jpg" alt="" />
+              </div>
+              <div>
+                <img src="/images/slide4.jpg" alt="" />
+              </div>
+              <div>
+                <img src="/images/slide5.jpg" alt="" />
+              </div>
+              <div>
+                <img src="/images/slide6.jpg" alt="" />
+              </div>
+            </Slider>
           </div>
         </div>
       </div>

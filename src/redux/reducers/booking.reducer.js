@@ -1,6 +1,7 @@
 import {
   CHOICE_CHAIR,
   GET_LIST_TICKET,
+  BOOKING_TICKET,
 } from "./../constants/booking.constants";
 import movieReducer from "./movie.reducer";
 
@@ -8,6 +9,7 @@ const initialState = {
   chairList: [],
   movieInfo: {},
   listChairChoice: [],
+  infoBookingTicket: {},
 };
 
 const bookingReducer = (state = initialState, action) => {
@@ -60,6 +62,12 @@ const bookingReducer = (state = initialState, action) => {
       }
 
       break;
+    }
+
+    case BOOKING_TICKET: {
+      const infoBookingTicket = JSON.parse(payload);
+      console.log("infoBookingTicket", infoBookingTicket);
+      return { ...state, infoBookingTicket: infoBookingTicket };
     }
 
     default:

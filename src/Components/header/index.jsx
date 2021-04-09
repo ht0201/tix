@@ -8,7 +8,11 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { red } from "@material-ui/core/colors";
 import { NavLink } from "react-router-dom";
-import "./styles";
+import "./styles.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
+import { checkLoginAPI } from "../../redux/actions/user.action";
 
 // import { withStyles } from "@material-ui/core";
 // import styles from "./styles";
@@ -30,19 +34,62 @@ const useStyles = makeStyles((theme) => ({
   },
 
   setWidthHeight: {
-    height: "50px",
-    width: "50px",
+    height: "40px",
+    width: "40px",
   },
 }));
 
 export default function Header() {
   const classes = useStyles();
+  const userLogin = useSelector((state) => state).userReducer.userLogin;
+  const dispatch = useDispatch();
 
-  // function handleClick() {
-  //       $(document).ready(function(){
-  //     $('html,body').animate({scrollTop:$(location.hash).offset().‌​top}, 500);
-  //   });
-  // }
+  const [user, setUser] = useState("");
+
+  useEffect(
+    function () {
+      dispatch(checkLoginAPI(userLogin));
+    },
+    [user]
+  );
+
+  function handleLogOut(userLogin) {
+    window.localStorage.clear();
+    setUser({
+      user: userLogin,
+    });
+  }
+
+  function checkLogin() {
+    if (userLogin) {
+      return (
+        <>
+          <li className="nav-item ">
+            <b className="nav-link user">{userLogin.taiKhoan}</b>
+            <span className="logOut" onClick={() => handleLogOut(userLogin)}>
+              {" "}
+              Đăng xuất{" "}
+            </span>
+          </li>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <li className="nav-item active">
+            <NavLink to="/Login" className="nav-link">
+              Đăng nhập <span className="sr-only">(current)</span>
+            </NavLink>
+          </li>
+          <li className="nav-item ">
+            <NavLink to="/sign-up" className="nav-link">
+              Đăng ký <span className="sr-only">(current)</span>
+            </NavLink>
+          </li>
+        </>
+      );
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -70,75 +117,38 @@ export default function Header() {
             <ul className="navbar-nav m-auto mt-2 mt-lg-0">
               <li className="nav-item">
                 <a href="#movieCatelogy" className="nav-link">
-                  Lich chieu <span className="sr-only">(current)</span>
+                  Lịch chiếu <span className="sr-only">(current)</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="#lichChieu" className="nav-link">
-                  Cum rap
+                  Cụm rạp
                 </a>
               </li>
               <li className="nav-item">
-                <NavLink to="/" className="nav-link" href="sdsd">
-                  Tin tuc
-                </NavLink>
+                <a href="#news" className="nav-link">
+                  Tin tức
+                </a>
               </li>
               <li className="nav-item">
-                <NavLink to="/" className="nav-link" href="sdsd">
-                  Ung dung
-                </NavLink>
+                <a href="#homeApp" className="nav-link">
+                  Ứng dụng
+                </a>
               </li>
             </ul>
           </div>
           <div className="header__right">
             <ul className="navbar-nav m-auto mt-2 mt-lg-0">
-              <li className="nav-item active">
-                <NavLink to="/Login" className="nav-link" href="sass">
-                  Dang nhap <span className="sr-only">(current)</span>
-                </NavLink>
-              </li>
-              <li className="nav-item ">
-                <NavLink to="/sign-up" className="nav-link" href="sass">
-                  Dang ky <span className="sr-only">(current)</span>
-                </NavLink>
-              </li>
-              <li className="nav-item">
+              {checkLogin()}
+
+              {/* <li className="nav-item">
                 <NavLink to="/" className="nav-link" href="aaa">
                   Ho chi minh
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </div>
         </nav>
-
-        {/* <Typography variant="h6" className={classes.title}>
-            <NavLink to="/">
-              <img
-                src="./images/web-logo.png"
-                alt="logo"
-                className={classes.setWidthHeight}
-              />
-            </NavLink>
-          </Typography>
-          <Typography variant="h6" className={classes.title}>
-            <NavLink to="/">Lich chieu</NavLink>
-          </Typography>
-          <Typography variant="h6" className={classes.title}>
-            <NavLink to="/">Cum rap</NavLink>
-          </Typography>
-          <Typography variant="h6" className={classes.title}>
-            <NavLink to="/">Tin tuc</NavLink>
-          </Typography>
-          <Typography variant="h6" className={classes.title}>
-            <NavLink to="/">Ung dung</NavLink>
-          </Typography>
-
-          <Typography variant="h6" className={classes.title}>
-            <NavLink to="/Login">
-              <i class="fas fa-user"></i>
-              Dang nhap
-            </NavLink>
-          </Typography> */}
       </AppBar>
     </div>
   );

@@ -3,13 +3,15 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import Guard from "../../HOC/guard";
 import {
+  bookingTicketAPI,
   getChoiceChairAPI,
   getListTicketAPI,
 } from "../../redux/actions/booking.action";
 import "./styles.scss";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles(() => {
   return {
@@ -26,7 +28,9 @@ const useStyles = makeStyles(() => {
 });
 
 function Booking() {
+  const history = useHistory();
   const dispatch = useDispatch();
+
   const chairList = useSelector((state) => state).bookingReducer.chairList;
   const movieInfo = useSelector((state) => state).bookingReducer.movieInfo;
   const listChairChoice = useSelector((state) => state).bookingReducer
@@ -75,13 +79,10 @@ function Booking() {
   function handleChoiceChair(maGhe) {
     console.log("maGhe", maGhe);
     renderMaGheChoice(maGhe);
-
     dispatch(getChoiceChairAPI(maGhe));
   }
 
   function renderMaGheChoice(maGhe) {
-    console.log("renderMaGhe", maGhe);
-
     return listChairChoice?.map((chairChoice, indexChoice) => {
       return (
         <span className="maGheChoice" key={indexChoice}>
@@ -89,6 +90,11 @@ function Booking() {
         </span>
       );
     });
+  }
+
+  function handleBookingTicket(maLichChieu, listChairChoice, history) {
+    console.log(maLichChieu, listChairChoice);
+    dispatch(bookingTicketAPI(maLichChieu, listChairChoice, history));
   }
 
   function startTimer(duration, display) {
@@ -197,7 +203,14 @@ function Booking() {
             </div>
 
             <div className="btn btnDatVe item__box  d-flex">
-              <Button variant="contained">DAT VE</Button>
+              <Button
+                variant="contained"
+                onClick={() =>
+                  handleBookingTicket(code, listChairChoice, history)
+                }
+              >
+                DAT VE
+              </Button>
             </div>
           </div>
         </div>
@@ -206,4 +219,4 @@ function Booking() {
   );
 }
 
-export default Booking;
+export default withRouter(Booking);

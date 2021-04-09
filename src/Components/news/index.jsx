@@ -104,7 +104,7 @@ export default function News() {
   }
 
   return (
-    <>
+    <div id="news">
       <ul
         className="nav nav-pills mb-3 container mt-5 nav__news"
         id="pills-tab"
@@ -189,6 +189,6 @@ export default function News() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
