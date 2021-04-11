@@ -47,7 +47,7 @@ export const getMovieDetailAPI = (id) => {
   return (dispacth) => {
     axios({
       method: "GET",
-      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`,
     })
       .then((res) => {
         // console.log(res.data);
@@ -61,13 +61,13 @@ export const getMovieDetailAPI = (id) => {
 
 // ----- Lich chieu theo he thong rap
 export const getListLichChieuHTRAction = (
-  listMovieTheoHeThongRap,
+  lichChieuTheoHeThongRap,
   maHeThongRap,
   ngayChieu
 ) => {
   return {
     type: GET_LIST_LICH_CHIEU_HTR_DETAIL,
-    payload: { listMovieTheoHeThongRap, maHeThongRap, ngayChieu },
+    payload: { lichChieuTheoHeThongRap, maHeThongRap, ngayChieu },
   };
 };
 
@@ -76,13 +76,14 @@ export const getListLichChieuHTRAPI = (
   maHeThongRap = "BHDStar",
   ngayChieu = "2019-01-01T10:10:00"
 ) => {
+  console.log(maHeThongRap, ngayChieu);
   return (dispacth) => {
     axios({
       method: "GET",
       url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`,
     })
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         dispacth(getListLichChieuHTRAction(res.data, maHeThongRap, ngayChieu));
       })
       .catch((err) => {

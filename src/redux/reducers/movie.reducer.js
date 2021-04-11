@@ -42,27 +42,28 @@ const movieReducer = (state = initialState, action) => {
     }
 
     case GET_FILM_DETAIL: {
-      console.log(payload);
+      console.log("movie detail", payload);
 
-      const thoiLuong = payload.lichChieu?.find(
-        (movie) => movie.maPhim === JSON.parse(payload.maPhim)
-      );
+      // const thoiLuong = payload.lichChieu?.find(
+      //   (movie) => movie.maPhim === JSON.parse(payload.maPhim)
+      // );
 
-      console.log(thoiLuong.thoiLuong);
+      // console.log(thoiLuong.thoiLuong);
 
-      return { ...state, movieDetail: payload, thoiLuong: thoiLuong.thoiLuong };
+      return { ...state, movieDetail: payload };
     }
 
     case GET_LIST_LICH_CHIEU_HTR_DETAIL: {
-      const lichChieuTheoHeThongRap = payload.listMovieTheoHeThongRap.heThongRapChieu?.find(
+      const lichChieuTheoHeThongRap = payload.lichChieuTheoHeThongRap?.heThongRapChieu?.find(
         (cumRap) => {
           const listHTRFilter = cumRap.maHeThongRap === payload.maHeThongRap;
-          console.log("listHTRFilter", listHTRFilter);
           return listHTRFilter;
         }
       );
 
-      const listNgayChieu = lichChieuTheoHeThongRap.cumRapChieu.map(
+      console.log("lichChieuTheoHeThongRap", lichChieuTheoHeThongRap);
+
+      const listNgayChieu = lichChieuTheoHeThongRap?.cumRapChieu.map(
         (cumRap, indexLCP) => {
           const lcFilter = cumRap.lichChieuPhim.filter((lc) => {
             return (
@@ -83,16 +84,16 @@ const movieReducer = (state = initialState, action) => {
     }
 
     case GET_LIST_HE_THONG_RAP: {
+      console.log("listHeThongRap", payload);
       return { ...state, listHeThongRap: payload };
     }
 
     case GET_LIST_CUM_RAP: {
-      console.log(payload);
+      console.log("listCumRap", payload);
       return { ...state, listCumRap: payload };
     }
 
     case GET_LIST_MOVIE_RAP: {
-      console.log(payload);
       console.log(state.listCumRap);
       const newListCumRap = state.listCumRap;
 

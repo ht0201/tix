@@ -19,13 +19,11 @@ moment().format();
 
 const DetailLichChieu = () => {
   const dispatch = useDispatch();
-  const movieDetail = useSelector((state) => state).movieReducer.movieDetail;
-  const thoiLuong = useSelector((state) => state).movieReducer.thoiLuong;
+
+  // const thoiLuong = useSelector((state) => state).movieReducer.thoiLuong;
+
   const listHeThongRap = useSelector((state) => state).movieReducer
     .listHeThongRap;
-  const { heThongRapChieu } = listHeThongRap;
-
-  const lichChieu = movieDetail.lichChieu;
 
   const lichChieuTheoHeThongRap = useSelector((state) => state).movieReducer
     .lichChieuTheoHeThongRap;
@@ -40,10 +38,6 @@ const DetailLichChieu = () => {
   const [maHeThongRap, setMaHeThongRap] = useState("");
   const [ngayChieu, setNgayChieu] = useState("");
 
-  // useEffect(function () {
-  //   dispatch(getFilmDetailAPI(id));
-  // }, []);
-
   useEffect(
     function () {
       dispatch(
@@ -57,9 +51,12 @@ const DetailLichChieu = () => {
     [maHeThongRap, ngayChieu]
   );
 
-  useEffect(function () {
-    dispatch(getListHeThongRapAPI());
-  }, []);
+  useEffect(
+    function () {
+      dispatch(getListHeThongRapAPI());
+    },
+    [maHeThongRap]
+  );
 
   function renderRap() {
     return listNgayChieu?.map((rap, indexRap) => {
@@ -98,7 +95,7 @@ const DetailLichChieu = () => {
     return rap.lcFilter?.map((itemLc, index) => {
       const timeIn = format("hh:mm", new Date(itemLc?.ngayChieuGioChieu));
       const changeMinute = moment.duration(timeIn, "hh:mm").asMinutes("mm");
-      const outMinute = changeMinute + thoiLuong;
+      const outMinute = changeMinute + 120;
       const timeOut = moment
         .utc()
         .startOf("day")
@@ -125,7 +122,7 @@ const DetailLichChieu = () => {
       const dayOfWeek = new Date(date).getDay();
       return isNaN(dayOfWeek)
         ? null
-        : ["Chu nhat", "Thu 2", "Thu 3", "Thu 4", "Thu 5", "Thu 6", "Thu 7"][
+        : ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"][
             dayOfWeek
           ];
     }
@@ -133,14 +130,14 @@ const DetailLichChieu = () => {
     return lichChieuTheoHeThongRap?.cumRapChieu?.map((rap, indexRap) => {
       return rap.lichChieuPhim?.map((lc, indexLc) => {
         return (
-          <li
-            className="dayItem"
+          <a
             key={indexLc}
+            className={`dayItem ${indexLc === 0 ? "active" : " "}`}
             onClick={() => handleChangeNgayChieu(lc.ngayChieuGioChieu)}
           >
             <p>{getDayOfWeek(lc.ngayChieuGioChieu.slice(0, 10))}</p>
             <h5> {lc.ngayChieuGioChieu.slice(8, 10)}</h5>
-          </li>
+          </a>
         );
       });
     });
@@ -149,21 +146,28 @@ const DetailLichChieu = () => {
   function renderListHeThongRap() {
     return listHeThongRap?.map((rap, index) => {
       return (
-        <li
+        <a
           key={index}
           className={`rap__item ${index === 0 ? "active" : " "}`}
-          onClick={() => handleChangeHeThongRap(rap.maHeThongRap)}
+          id={rap.maHeThongRap}
+          data-toggle="pill"
+          href={`#${rap.maHeThongRap}`}
+          role="tab"
+          aria-controls={rap.maHeThongRap}
+          aria-selected="true"
+          onClick={() => handleChangeHeThongRap(rap)}
         >
           <img src={rap.logo} alt="rap" />
           <p>{rap.tenHeThongRap}</p>
-        </li>
+        </a>
       );
     });
   }
 
-  function handleChangeHeThongRap(maHeThongRap) {
+  function handleChangeHeThongRap(rap) {
+    console.log("heThongRap chon", rap);
     setMaHeThongRap({
-      maHeThongRap: maHeThongRap,
+      maHeThongRap: rap.maHeThongRap,
     });
   }
 
@@ -176,13 +180,13 @@ const DetailLichChieu = () => {
 
   return (
     <>
-      <div className="row lichChieu">
+      <div className="row lichChieu__content">
         <div className="col-3 rap__info">
-          <ul className="rap__list">{renderListHeThongRap()}</ul>
+          <div className="rap__list">{renderListHeThongRap()}</div>
         </div>
         <div className="col-9 listDayOfWeek">
           <div className="dayOfWeek">
-            <ul className="listDay">{renderNgayChieu()}</ul>
+            <div className="listDay">{renderNgayChieu()}</div>
           </div>
           <div className="tab-content projection">
             <div

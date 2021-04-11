@@ -10,7 +10,6 @@ const userReducer = (state = initialState, action) => {
 
   switch (type) {
     case LOGIN: {
-      console.log("userLogin", payload);
       return { ...state, userLogin: payload };
     }
     case SIGN_UP: {
@@ -23,7 +22,6 @@ const userReducer = (state = initialState, action) => {
 
     default: {
       const userLogin = JSON.parse(localStorage.getItem("userLogin"));
-      console.log("userLogin", userLogin);
 
       return { state, userLogin: userLogin };
     }

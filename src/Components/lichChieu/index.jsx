@@ -52,7 +52,7 @@ export default function LichChieu() {
           role="tab"
           aria-controls={heThongRap.maHeThongRap}
           aria-selected="true"
-          onClick={() => handleClickHeThongRap(heThongRap.maHeThongRap)}
+          onClick={() => handleClickHeThongRap(heThongRap)}
         >
           <img src={heThongRap.logo} alt="rap" />
         </a>
@@ -60,9 +60,9 @@ export default function LichChieu() {
     });
   }
 
-  function handleClickHeThongRap(maHeThongRap) {
+  function handleClickHeThongRap(heThongRap) {
     setHeThongRap({
-      heThongRap: maHeThongRap,
+      heThongRap: heThongRap.maHeThongRap,
     });
   }
 
@@ -72,7 +72,7 @@ export default function LichChieu() {
         <div
           className={`listBrand row mb-3 ${index === 0 ? "active" : ""}`}
           key={index}
-          onClick={() => handleClickCumRap(cumRap.maCumRap)}
+          onClick={() => handleClickCumRap(cumRap)}
         >
           <div className="img__card col-4">
             <img
@@ -92,51 +92,12 @@ export default function LichChieu() {
     });
   }
 
-  function handleClickCumRap(maCumRap) {
-    console.log(maCumRap);
+  function handleClickCumRap(cumRap) {
+    console.log(cumRap);
     setCumRap({
-      maCumRap: maCumRap,
+      maCumRap: cumRap.maCumRap,
     });
   }
-
-  // function renderListMovieRap() {
-  //   return listMovieRap.listPhim?.map((movie, index) => {
-  //     return (
-  //       <Accordion defaultActiveKey="0" key={index}>
-  //         <Card>
-  //           <Accordion.Toggle as={Card.Header} eventKey="0">
-  //             <div className="img__card">
-  //               <img src={movie.hinhAnh} alt="img-bhd" />
-  //             </div>
-  //             <div className="address">
-  //               <h5>
-  //                 <b> {movie.tenPhim} </b>
-  //               </h5>
-  //               <p>phut </p>
-  //             </div>
-  //           </Accordion.Toggle>
-  //           <Accordion.Collapse eventKey="0" className="acc__collapse">
-  //             <Card.Body>
-  //               <h6>2D Digital</h6>
-  //               <div className="listSuatChieu">
-  //                 {listMovieRap.uniqueLichChieu[index]?.map(
-  //                   (uniLC, subindex) => {
-  //                     return (
-  //                       <div className="suatChieu" key={subindex}>
-  //                         <span className="suatChieuIn">{uniLC} ~</span>
-  //                         <span className="suatChieuOut"> 15:08</span>
-  //                       </div>
-  //                     );
-  //                   }
-  //                 )}
-  //               </div>
-  //             </Card.Body>
-  //           </Accordion.Collapse>
-  //         </Card>
-  //       </Accordion>
-  //     );
-  //   });
-  // }
 
   return (
     <>

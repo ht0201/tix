@@ -4,7 +4,7 @@ import "./styles.scss";
 export default function Footer() {
   return (
     <footer>
-      <div className="container">
+      <div className="container pt-3">
         <div className="row row__topFooter">
           <div className="col-4 item">
             <h5>TIX</h5>
@@ -35,64 +35,64 @@ export default function Footer() {
             <h5>DOI TAC</h5>
             <div className="row row__doitac">
               <div className="img">
-                <img src="./images/galaxycine.png" alt="" />
+                <img src="/images/galaxycine.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/lotte.png" alt="" />
+                <img src="/images/lotte.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/megags.png" alt="" />
+                <img src="/images/megags.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/cinestar.png" alt="" />
+                <img src="/images/cinestar.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/bhd.png" alt="" />
+                <img src="/images/bhd.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/cgv.png" alt="" />
+                <img src="/images/cgv.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/bt.jpg" alt="" />
+                <img src="/images/bt.jpg" alt="" />
               </div>
               <div className="img">
-                <img src="./images/dongdacinema.png" alt="" />
+                <img src="/images/dongdacinema.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/TOUCH.png" alt="" />
+                <img src="/images/TOUCH.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/cnx.jpg" alt="" />
+                <img src="/images/cnx.jpg" alt="" />
               </div>
               <div className="img">
-                <img src="./images/STARLIGHT.png" alt="" />
+                <img src="/images/STARLIGHT.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/dcine.png" alt="" />
+                <img src="/images/dcine.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/zalopay_icon.png" alt="" />
+                <img src="/images/zalopay_icon.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/payoo.jpg" alt="" />
+                <img src="/images/payoo.jpg" alt="" />
               </div>
               <div className="img">
-                <img src="./images/VCB.png" alt="" />
+                <img src="/images/VCB.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/VIETTINBANK.png" alt="" />
+                <img src="/images/VIETTINBANK.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/AGRIBANK.png" alt="" />
+                <img src="/images/AGRIBANK.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/IVB.png" alt="" />
+                <img src="/images/IVB.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/123go.png" alt="" />
+                <img src="/images/123go.png" alt="" />
               </div>
               <div className="img">
-                <img src="./images/laban.png" alt="" />
+                <img src="/images/laban.png" alt="" />
               </div>
             </div>
           </div>
@@ -103,12 +103,12 @@ export default function Footer() {
                 <ul>
                   <li>
                     <a href="abc">
-                      <img src="./images/apple-logo.png" alt="" />
+                      <img src="/images/apple-logo.png" alt="" />
                     </a>
                   </li>
                   <li>
                     <a href="abc">
-                      <img src="./images/android-logo.png" alt="" />
+                      <img src="/images/android-logo.png" alt="" />
                     </a>
                   </li>
                 </ul>
@@ -118,12 +118,12 @@ export default function Footer() {
                 <ul>
                   <li>
                     <a href="abc">
-                      <img src="./images/facebook-logo.png" alt="" />
+                      <img src="/images/facebook-logo.png" alt="" />
                     </a>
                   </li>
                   <li>
                     <a href="abc">
-                      <img src="./images/zalo-logo.png" alt="" />
+                      <img src="/images/zalo-logo.png" alt="" />
                     </a>
                   </li>
                 </ul>
@@ -133,7 +133,7 @@ export default function Footer() {
         </div>
         <div className="row row__address mt-3">
           <div className="col-9">
-            <img src="./images/zion-logo.jpg" alt="" />
+            <img src="/images/zion-logo.jpg" alt="" />
             <div className="contact">
               <h6>TIX – SẢN PHẨM CỦA CÔNG TY CỔ PHẦN ZION</h6>
               <p>
@@ -152,7 +152,7 @@ export default function Footer() {
           <div className="col-3 boCongThuong">
             <img
               className="img__boCongThuong"
-              src="./images/boCongThuong.png"
+              src="/images/boCongThuong.png"
               alt=""
             />
           </div>

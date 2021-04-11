@@ -1,3 +1,20 @@
+@mixin btnBook {
+   .btnBook {
+      padding: 20px 0;
+      width: 100%;
+
+      span.MuiButton-label {
+         color: #FFF !important;
+         font-size: 1.2rem;
+         font-weight: bold;
+      }
+
+      &:focus {
+         outline: none;
+      }
+   }
+}
+
 .booking {
 
    .col-8 {
@@ -86,13 +103,26 @@
       position: relative;
       padding: 0;
 
+      border-left: 0px solid #BBB;
+      box-shadow: 2px 10px 10px;
+
+      .price {
+         text-align: center;
+         color: rgb(73, 205, 52);
+      }
+
       .seat__price {
          h5 {
+            width: 75%;
             overflow-wrap: anywhere;
          }
 
          .maGheChoice {
             color: red;
+         }
+
+         span {
+            color: rgb(73, 205, 52);
          }
       }
 
@@ -121,22 +151,15 @@
          width: 100%;
          position: absolute;
          bottom: 0;
+         padding: 0;
+         @include btnBook();
 
+         .btnNotChoice {
+            background-image: linear-gradient(to right, rgb(138, 135, 135), rgba(147, 145, 145, 0.235));
+         }
 
-         button {
-            background-image: linear-gradient(to right, rgb(36, 167, 24), rgb(73, 205, 52));
-            padding: 20px 0;
-            width: 100%;
-
-            span.MuiButton-label {
-               color: #FFF !important;
-               font-size: 1.2rem;
-               font-weight: bold;
-            }
-
-            &:focus {
-               outline: none;
-            }
+         .btnChoicing {
+            background-image: linear-gradient(to right, rgb(41, 170, 29), rgb(94, 230, 74));
          }
       }
    }

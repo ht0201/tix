@@ -18,9 +18,9 @@ function DetailFilm() {
   const movieDetail = useSelector((state) => state).movieReducer.movieDetail;
   const { lichChieu } = movieDetail;
 
-  const thoiLuong = useSelector((state) => state).movieReducer.thoiLuong;
+  // const thoiLuong = useSelector((state) => state).movieReducer.thoiLuong;
   const { id } = useParams();
-  console.log(movieDetail);
+  console.log("movieDetail", movieDetail);
 
   useEffect(function () {
     dispatch(getMovieDetailAPI(id));
@@ -29,7 +29,7 @@ function DetailFilm() {
   return (
     <div className="detailFilm">
       <div className="img__cover">
-        {/* <img src={movieDetail.hinhAnh} alt="" /> */}
+        <img src={movieDetail.hinhAnh} alt="" />
       </div>
 
       <div className="container">
@@ -45,9 +45,11 @@ function DetailFilm() {
               <h5>{movieDetail.tenPhim}</h5>
             </div>
 
-            <p> {thoiLuong} phut</p>
+            <p> phut</p>
 
-            <button className="btn__muaVe">MUA VE</button>
+            <a href="#tab-lichChieu" className="btn__muaVe">
+              MUA VE
+            </a>
           </div>
           <div className="col-3 point__rating">
             <div className="point__rating__flex">
@@ -67,38 +69,46 @@ function DetailFilm() {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="row infoRapChieuFilm">
-          <div className="rap__lichChieu">
-            {/* Nav pills */}
-            <ul className="nav nav-pills justify-content-center align-items-center">
-              <li className="nav-item">
-                <a className="nav-link active" data-toggle="pill" href="#home">
-                  Lich Chieu
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" data-toggle="pill" href="#menu1">
+      <div className="tab-lichChieu" id="tab-lichChieu">
+        <div className="container">
+          <div className="row infoRapChieuFilm">
+            <div className="rap__lichChieu">
+              {/* Nav pills */}
+              <ul className="nav nav-pills justify-content-center align-items-center">
+                <li className="nav-item">
+                  <a
+                    className="nav-link active"
+                    data-toggle="pill"
+                    href="#home"
+                  >
+                    Lich Chieu
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" data-toggle="pill" href="#menu1">
+                    Thong tin
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" data-toggle="pill" href="#menu2">
+                    Danh gia
+                  </a>
+                </li>
+              </ul>
+
+              {/* Tab panes */}
+              <div className="tab-content">
+                <div className="tab-pane container active" id="home">
+                  <DetailLichChieu />
+                </div>
+                <div className="tab-pane container fade" id="menu1">
                   Thong tin
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" data-toggle="pill" href="#menu2">
+                </div>
+                <div className="tab-pane container fade" id="menu2">
                   Danh gia
-                </a>
-              </li>
-            </ul>
-
-            {/* Tab panes */}
-            <div className="tab-content">
-              <div className="tab-pane container active" id="home">
-                <DetailLichChieu />
-              </div>
-              <div className="tab-pane container fade" id="menu1">
-                Thong tin
-              </div>
-              <div className="tab-pane container fade" id="menu2">
-                Danh gia
+                </div>
               </div>
             </div>
           </div>

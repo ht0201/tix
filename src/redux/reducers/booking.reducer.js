@@ -27,8 +27,13 @@ const bookingReducer = (state = initialState, action) => {
 
     case CHOICE_CHAIR: {
       console.log("chair", payload);
-      const listChoice = state.listChairChoice;
 
+      // check dangChon in chairList
+      const listChoice = state.chairList.filter(
+        (chair) => chair.dangChon === true
+      );
+
+      // find index dangChon for update status chair
       const index = state.chairList.findIndex(
         (chair) => chair.maGhe === payload
       );
@@ -46,7 +51,7 @@ const bookingReducer = (state = initialState, action) => {
         // check lai listChairChoice
         // choice: push vo arr, If tim thay (khac -1): del khoi arr, neu ko tim thay ( -1) thi push
 
-        const indexChoice = state.listChairChoice.findIndex(
+        const indexChoice = listChoice.findIndex(
           (chair) => chair.maGhe === payload
         );
 
@@ -56,7 +61,7 @@ const bookingReducer = (state = initialState, action) => {
           listChoice.push(newChair);
         }
 
-        console.log("listChairChoice", state.listChairChoice);
+        console.log("listChairChoice", listChoice);
 
         return { ...state, listChairChoice: listChoice };
       }

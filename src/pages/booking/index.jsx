@@ -39,6 +39,7 @@ function Booking() {
   console.log("chairList", chairList);
   console.log("movieInfo", movieInfo);
   console.log("userLogin", userLogin);
+  console.log("listChairChoice", listChairChoice);
 
   const classes = useStyles();
   const { code } = useParams();
@@ -48,8 +49,41 @@ function Booking() {
 
   // api lay list ve
   useEffect(function () {
+    // set timer when booking loading
+    var fiveMinutes = 60 * 5,
+      display = document.querySelector("#timer");
+    startTimer(fiveMinutes, display);
+
     dispatch(getListTicketAPI(code));
   }, []);
+
+  function renderBtnDatVe() {
+    if (
+      chairList?.filter((chair) => chair.dangChon === true).length > 0 &&
+      typeof chairList?.filter((chair) => chair.dangChon !== "undefined")
+    ) {
+      return (
+        <Button
+          className="btnBook btnChoicing"
+          variant="contained"
+          onClick={() => handleBookingTicket(code, listChairChoice, history)}
+        >
+          DAT VE
+        </Button>
+      );
+    } else {
+      return (
+        <Button
+          className="btnBook btnNotChoice noClick"
+          variant="contained"
+          disabled
+          onClick={() => handleBookingTicket(code, listChairChoice, history)}
+        >
+          DAT VE
+        </Button>
+      );
+    }
+  }
 
   function renderStatusChair(booked, choice) {
     if (booked) {
@@ -67,6 +101,7 @@ function Booking() {
         <Button
           key={indexCh}
           variant="contained"
+          disabled={chair.daDat === true ? "disabled" : ""}
           className={`chair ${renderStatusChair(chair.daDat, chair.dangChon)}`}
           onClick={() => handleChoiceChair(chair.maGhe)}
         >
@@ -78,22 +113,34 @@ function Booking() {
 
   function handleChoiceChair(maGhe) {
     console.log("maGhe", maGhe);
+    totalAmountTicket();
     renderMaGheChoice(maGhe);
     dispatch(getChoiceChairAPI(maGhe));
   }
 
+  function totalAmountTicket() {
+    return chairList
+      ?.filter((chair) => chair.dangChon === true)
+      .reduce((tong, sp, index) => {
+        return (tong += sp.giaVe);
+      }, 0);
+  }
+
   function renderMaGheChoice(maGhe) {
-    return listChairChoice?.map((chairChoice, indexChoice) => {
-      return (
-        <span className="maGheChoice" key={indexChoice}>
-          {chairChoice.tenGhe},
-        </span>
-      );
-    });
+    return chairList
+      ?.filter((chair) => chair.dangChon === true)
+      ?.map((chairChoice, indexChoice) => {
+        return (
+          <span className="maGheChoice" key={indexChoice}>
+            {chairChoice.tenGhe},
+          </span>
+        );
+      });
   }
 
   function handleBookingTicket(maLichChieu, listChairChoice, history) {
     console.log(maLichChieu, listChairChoice);
+
     dispatch(bookingTicketAPI(maLichChieu, listChairChoice, history));
   }
 
@@ -116,12 +163,6 @@ function Booking() {
       }
     }, 1000);
   }
-
-  window.onload = function () {
-    var fiveMinutes = 60 * 5,
-      display = document.querySelector("#timer");
-    startTimer(fiveMinutes, display);
-  };
 
   return (
     <Guard>
@@ -155,7 +196,7 @@ function Booking() {
           </div>
           <div className="col-4 info__ticket">
             <div className="price item__box">
-              <h1>0 d</h1>
+              <h1>{totalAmountTicket().toLocaleString()} d</h1>
             </div>
             <div className="detail__movie item__box">
               <b>C18</b> <span>{movieInfo.tenPhim}</span>
@@ -165,8 +206,10 @@ function Booking() {
               <span>{movieInfo.tenRap}</span>
             </div>
             <div className="seat__price item__box d-flex">
-              <h5>Ghe {renderMaGheChoice()}</h5>
-              <span className="ml-auto">0d</span>
+              <h5>Ghế {renderMaGheChoice()}</h5>
+              <span className="ml-auto">
+                {totalAmountTicket().toLocaleString()} d
+              </span>
             </div>
             <div className="email item__box">
               <form className={classes.root} noValidate autoComplete="off">
@@ -203,14 +246,8 @@ function Booking() {
             </div>
 
             <div className="btn btnDatVe item__box  d-flex">
-              <Button
-                variant="contained"
-                onClick={() =>
-                  handleBookingTicket(code, listChairChoice, history)
-                }
-              >
-                DAT VE
-              </Button>
+              {/* check choiceChair for btnDatVe */}
+              {renderBtnDatVe()}
             </div>
           </div>
         </div>

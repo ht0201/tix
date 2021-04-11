@@ -17,7 +17,6 @@ export default function Home() {
       <LichChieu />
       <News />
       <HomeApp />
-      <Footer />
     </div>
   );
 }

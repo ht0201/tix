@@ -9,6 +9,8 @@
                         .suatChieu {
                            height: auto;
                            margin-right: 0;
+                           flex: 0 0 25%;
+                           max-width: 25%;
 
                            &:hover {
                               text-decoration: none;
