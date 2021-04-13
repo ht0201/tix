@@ -1,11 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+// import Toolbar from "@material-ui/core/Toolbar";
+// import Typography from "@material-ui/core/Typography";
+// import Button from "@material-ui/core/Button";
+// import IconButton from "@material-ui/core/IconButton";
+// import MenuIcon from "@material-ui/icons/Menu";
 import { red } from "@material-ui/core/colors";
 import { NavLink } from "react-router-dom";
 import "./styles.scss";
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
   const classes = useStyles();
-  const userLogin = useSelector((state) => state).userReducer.userLogin;
+  const userLogin = JSON.parse(localStorage.getItem("userLogin"));
   const dispatch = useDispatch();
 
   const [user, setUser] = useState("");
@@ -65,7 +65,10 @@ export default function Header() {
       return (
         <>
           <li className="nav-item ">
-            <b className="nav-link user">{userLogin.taiKhoan}</b>
+            Chào, <b className="nav-link user"> {userLogin.taiKhoan}</b>
+            <NavLink className="profile" to="/profile">
+              Profile
+            </NavLink>
             <span className="logOut" onClick={() => handleLogOut(userLogin)}>
               {" "}
               Đăng xuất{" "}

@@ -188,11 +188,8 @@ const DetailLichChieu = () => {
           <div className="dayOfWeek">
             <div className="listDay">{renderNgayChieu()}</div>
           </div>
-          <div className="tab-content projection">
-            <div
-              className="tab-pane container active projection__list"
-              id="home"
-            >
+          <div className="tab-content">
+            <div className="tab-pane container active " id="home">
               {renderRap()}
             </div>
           </div>

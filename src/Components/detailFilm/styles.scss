@@ -197,6 +197,10 @@ $color-tertiary: #9b9b9b;
             .tab-content {
                background-color: #FFF;
                height: auto;
+
+               .tab-pane {
+                  padding: 0;
+               }
             }
          }
       }

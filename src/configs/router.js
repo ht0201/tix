@@ -5,6 +5,7 @@ import DashBoard from "../pages/dashboard";
 import User from "../pages/user";
 import Booking from "../pages/booking";
 import SignUp from "../pages/sign-up";
+import Profile from "../pages/profile";
 
 export const mainRouter = [
   {
@@ -32,6 +33,11 @@ export const mainRouter = [
     path: "/sign-up",
     exact: false,
     Components: SignUp,
+  },
+  {
+    path: "/profile",
+    exact: false,
+    Components: Profile,
   },
 ];
 

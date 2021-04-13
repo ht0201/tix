@@ -1,8 +1,14 @@
-import { LOGIN, SIGN_UP } from "./../constants/user.constant";
+import {
+  LOGIN,
+  POST_PROFILE,
+  PUT_PROFILE,
+  SIGN_UP,
+} from "./../constants/user.constant";
 
 const initialState = {
   userLogin: null,
   userSignUp: null,
+  profile: {},
 };
 
 const userReducer = (state = initialState, action) => {
@@ -18,6 +24,18 @@ const userReducer = (state = initialState, action) => {
 
     case "CHECK_LOGIN": {
       return { ...state, userLogin: "" };
+    }
+
+    case POST_PROFILE: {
+      return { ...state, profile: payload };
+    }
+
+    case PUT_PROFILE: {
+      console.log("rs PUT", payload);
+      localStorage.clear();
+      // JSON.stringify(localStorage.setItem("userLogin", payload));
+
+      return { ...state, userLogin: payload };
     }
 
     default: {

@@ -9,12 +9,30 @@ header {
          ul {
             li {
                position: relative;
+               color: #000;
+               display: flex;
+               align-items: center;
 
                &:hover {
                   cursor: pointer;
                }
 
                &:hover span {
+                  cursor: pointer;
+                  display: block;
+                  color: #FFF;
+                  position: absolute;
+                  bottom: -5rem;
+                  left: 0;
+                  padding: 0.5rem;
+                  background: #999;
+                  font-weight: 600;
+                  border-radius: 5px;
+               }
+
+
+               &:hover .profile {
+                  text-decoration: none;
                   cursor: pointer;
                   display: block;
                   color: #FFF;
@@ -32,7 +50,8 @@ header {
                }
 
 
-               span {
+               span,
+               .profile {
                   display: none;
 
                }

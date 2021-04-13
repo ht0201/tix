@@ -1,5 +1,10 @@
 import axios from "axios";
-import { LOGIN, SIGN_UP } from "./../constants/user.constant";
+import {
+  LOGIN,
+  SIGN_UP,
+  POST_PROFILE,
+  PUT_PROFILE,
+} from "./../constants/user.constant";
 
 export const getLoginAction = (user) => {
   return {
@@ -67,6 +72,67 @@ export const checkLoginAPI = (userLogin) => {
     try {
       dispatch(checkLoginAction(userLogin));
       //   localStorage.setItem("userSignUp", JSON.stringify(res.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+// profile
+
+export const postProfileAction = (user) => {
+  return {
+    type: POST_PROFILE,
+    payload: user,
+  };
+};
+
+export const postProfileAPI = (user) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios({
+        method: "POST",
+        url:
+          "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+        data: user,
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      });
+      console.log(res);
+
+      dispatch(postProfileAction(res.data));
+      //   localStorage.setItem("userSignUp", JSON.stringify(res.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const putProfileAction = (user) => {
+  return {
+    type: PUT_PROFILE,
+    payload: user,
+  };
+};
+
+export const putProfileAPI = (user) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios({
+        method: "PUT",
+        url:
+          "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+        data: user,
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      });
+      console.log(res);
+      alert("CAP NHAT THANH CONG");
+      dispatch(putProfileAction(res.data));
+
+      // localStorage.setItem("userLogin", JSON.stringify(res.data));
     } catch (err) {
       console.log(err);
     }
