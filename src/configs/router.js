@@ -6,6 +6,9 @@ import User from "../pages/user";
 import Booking from "../pages/booking";
 import SignUp from "../pages/sign-up";
 import Profile from "../pages/profile";
+import QuanLyPhim from "../pages/quanLyPhim";
+import Admin from "../pages/admin/admin";
+import ThemPhim from "../pages/themPhim";
 
 export const mainRouter = [
   {
@@ -42,14 +45,24 @@ export const mainRouter = [
 ];
 
 export const adminRouter = [
+  // {
+  //   path: "/admin",
+  //   exact: true,
+  //   Components: Admin,
+  // },
   {
-    path: "/admin",
+    path: "/admin/quanlyphim",
     exact: true,
-    Components: DashBoard,
+    Components: QuanLyPhim,
   },
   {
     path: "/admin/user",
     exact: false,
     Components: User,
+  },
+  {
+    path: "/admin/themphim",
+    exact: false,
+    Components: ThemPhim,
   },
 ];

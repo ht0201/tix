@@ -31,9 +31,7 @@ const userReducer = (state = initialState, action) => {
     }
 
     case PUT_PROFILE: {
-      console.log("rs PUT", payload);
       localStorage.clear();
-      // JSON.stringify(localStorage.setItem("userLogin", payload));
 
       return { ...state, userLogin: payload };
     }

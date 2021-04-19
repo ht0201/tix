@@ -36,8 +36,6 @@ const movieReducer = (state = initialState, action) => {
 
   switch (type) {
     case GET_LIST_MOVIE_SHOWING: {
-      console.log(payload);
-
       return { ...state, movieListShowing: payload };
     }
 
