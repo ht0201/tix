@@ -11,7 +11,7 @@ const HomeLayout = (props) => {
   return (
     <>
       <Header />
-      <main style={{ marginTop: "70px" }}>
+      <main style={{ marginTop: "70px", padding: "0px" }}>
         {/* Goi cp con cua cp HomeLayout */}
         {props.children}
       </main>

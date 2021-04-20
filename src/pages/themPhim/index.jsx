@@ -7,6 +7,7 @@ import "./styles.scss";
 
 import { createMovieAPI } from "../../redux/actions/admin.quanlyphim.action";
 import { useDispatch } from "react-redux";
+import format from "date-format";
 
 export default function ThemPhim() {
   const dispatch = useDispatch();
@@ -28,13 +29,38 @@ export default function ThemPhim() {
 
   function handleChange(e) {
     e.preventDefault();
+
     let name = e.target.name;
     let value = e.target.value;
-    console.log(name, value);
-    setMoive({
-      ...movie,
-      [name]: value,
-    });
+
+    console.log(typeof name);
+
+    if (name === "ngayKhoiChieu") {
+      let newValue = format("dd-MM-yyyy", new Date(value));
+
+      console.log(newValue);
+      setMoive({
+        ...movie,
+        [name]: newValue,
+      });
+      return;
+    } else if (name === "danhGia") {
+      let newValue = parseInt(value);
+
+      console.log(newValue);
+      setMoive({
+        ...movie,
+        [name]: newValue,
+      });
+      return;
+    } else {
+      console.log(name, value);
+
+      setMoive({
+        ...movie,
+        [name]: value,
+      });
+    }
   }
 
   function handleChangeFileInputImage(e) {
@@ -58,6 +84,14 @@ export default function ThemPhim() {
           </div>
           <div className="col">
             <label> ngay khoi chieu </label>
+            {/* <input
+              type="text"
+              className="form-control"
+              placeholder="ngayKhoiChieu"
+              name="ngayKhoiChieu"
+              onChange={handleChange}
+            /> */}
+
             <input
               type="datetime-local"
               className="form-control"
@@ -164,7 +198,14 @@ export default function ThemPhim() {
           />
         </div>
 
-        <button className="btn btn-primary mr-2 mt-2"> Luu </button>
+        <button
+          type="submit"
+          value="Submit"
+          className="btn btn-primary mr-2 mt-2"
+        >
+          {" "}
+          Luu{" "}
+        </button>
         <button className="btn btn-secondary mt-2"> Huy </button>
       </form>
     </>

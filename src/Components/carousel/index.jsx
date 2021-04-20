@@ -8,79 +8,46 @@ import ModalVideo from "react-modal-video";
 
 import "./../../../node_modules/react-modal-video/scss/modal-video.scss";
 import "./styles.scss";
-
-const listCarousel = [
-  {
-    img: "./images/lua-deu-gap-lua-dao-16105107337344.jpg",
-    id: 1,
-    videoId: "https://www.youtube.com/watch?v=cy7O9tk0XZA",
-    dataTarget: "#modal-video-01",
-  },
-  {
-    img: "./images/em-la-cua-em-16106818552756.jpg",
-    id: 2,
-    videoId: "https://www.youtube.com/watch?v=9m5HbGDFBrI",
-    dataTarget: "#modal-video-02",
-  },
-
-  {
-    img: "./images/can-phong-ma-am-16115699578033.jpg",
-    id: 3,
-    videoId: "https://www.youtube.com/watch?v=kEgUgrh2rdA",
-    dataTarget: "#modal-video-03",
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function Carousel() {
   const [isOpen, setOpen] = useState(false);
-  const [state, setState] = useState();
+  const [state, setState] = useState("");
+
+  const movieListShowing = useSelector((state) => state).movieReducer
+    .movieListShowing;
 
   const settings = {
     dots: true,
     infinite: true,
-    speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
 
   function renderCarousel() {
-    //  const render = (
-    //    <>
+    return movieListShowing
+      .map((item, index) => {
+        return (
+          <div className="carousel__item" key={index}>
+            <img src={item.hinhAnh} alt="abc" />
 
-    return listCarousel.map((item, index) => {
-      return (
-        <div className="carousel__item" key={index}>
-          <img className="img-fluid" src={item.img} alt="abc" />
-
-          {/* modal Video */}
-          <React.Fragment>
-            <ModalVideo
-              id={item.dataTarget}
-              channel="youtube"
-              autoplay
-              isOpen={isOpen}
-              videoId={item.videoId}
-              onClose={() => setOpen(false)}
-            />
-            <button>
-              <div
-                className="play"
+            <React.Fragment>
+              <button
+                className="btn-primary play"
                 data-toggle="modal"
                 data-target={item.dataTarget}
                 onClick={() => openModal(true, item)}
               >
                 <FontAwesomeIcon icon={faPlay} />
-              </div>
-            </button>
-          </React.Fragment>
-        </div>
-      );
-    });
-
-    //    </>
-    //  );
-
-    //  return render;
+              </button>
+            </React.Fragment>
+          </div>
+        );
+      })
+      .slice(4, 8);
   }
 
   function openModal(status, item) {
@@ -89,30 +56,34 @@ export default function Carousel() {
     });
 
     setState({
-      state: item,
+      state: {
+        ...item,
+        idVideo: renderShortTrailer(item.trailer),
+      },
     });
+  }
 
-    console.log("modal click play ", item);
-    return state;
-    //  return (
-    //    <ModalVideo
-    //      id={item.dataTarget}
-    //      channel="youtube"
-    //      autoplay
-    //      isOpen={isOpen}
-    //      videoId={item.videoId}
-    //      onClose={() => setOpen(false)}
-    //    />
-    //  );
+  function renderShortTrailer(trailer) {
+    let stringEndTrailer = trailer?.split("/");
+
+    if (stringEndTrailer) {
+      return stringEndTrailer[stringEndTrailer.length - 1];
+    }
   }
 
   return (
-    <div>
-      <section className="carousel">
-        <div className="row carousel__list">
-          <Slider {...settings}>{renderCarousel()}</Slider>
-        </div>
-      </section>
+    <div className="carousel">
+      <div className="carousel__list">
+        <Slider {...settings}>{renderCarousel()}</Slider>
+      </div>
+      <ModalVideo
+        id={state.state?.maPhim}
+        channel="youtube"
+        autoplay
+        isOpen={isOpen}
+        videoId={state.state?.idVideo}
+        onClose={() => setOpen(false)}
+      />
     </div>
   );
 }

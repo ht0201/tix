@@ -1,0 +1,2 @@
+export const THEM_PHIM = "THEM_PHIM";
+export const GET_LIST_MOVIE_SHOWING_FIL = "GET_LIST_MOVIE_SHOWING_FIl";

@@ -2,33 +2,42 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getListMovieShowingAPI } from "../../redux/actions/movie.action";
+import { getListMovieShowingAdminAPI } from "../../redux/actions/admin.quanlyphim.action";
 // import "./styles.scss";
-import { MDBDataTable } from "mdbreact";
 
 import Pagination from "react-js-pagination";
 import { useState } from "react";
 
 const QuanLyPhim = () => {
-  const [state, setState] = useState({ activePage: 1 });
-
   const dispatch = useDispatch();
+  const [state, setState] = useState({ activePage: 1 });
+  const [movieFil, setMovieFil] = useState({
+    tenPhim: " ",
+  });
 
-  useEffect(function () {
-    dispatch(getListMovieShowingAPI());
-  }, []);
+  useEffect(
+    function () {
+      dispatch(getListMovieShowingAdminAPI(movieFil.tenPhim));
+    },
+    [movieFil]
+  );
 
-  const movieListShowing = useSelector((state) => state).movieReducer
-    .movieListShowing;
+  console.log("movieFil", movieFil);
 
-  console.log("movieListShowing", movieListShowing, movieListShowing.length);
+  const movieListShowingFil = useSelector((state) => state)
+    .adminQuanLyPhimReducer.movieListShowingFil;
+
+  const movieList = useSelector((state) => state).adminQuanLyPhimReducer
+    .movieList;
+
+  console.log("movieList", movieList);
 
   function renderMovieItem() {
     let itemPerPage = 10;
     let startIndex = (state.activePage - 1) * itemPerPage;
     let endIndex = (state.activePage - 1) * itemPerPage + 10;
 
-    return movieListShowing
+    return movieList
       ?.map((movie, index) => {
         return (
           <tr key={index}>
@@ -76,6 +85,18 @@ const QuanLyPhim = () => {
     console.log("pageNumber", pageNumber);
     setState({ activePage: pageNumber });
   };
+
+  function handleChange(e) {
+    e.preventDefault();
+    let name = e.target.name;
+    let value = e.target.value;
+
+    console.log(name, value);
+    setMovieFil({
+      [name]: value,
+    });
+  }
+
   return (
     <>
       <div className="container-fluid">
@@ -84,14 +105,13 @@ const QuanLyPhim = () => {
         </NavLink>
         <form className="form-inline">
           <div className="form-group mx-sm-3 mb-2">
-            <label htmlFor="taiKhoan" className="sr-only">
-              taiKhoan
-            </label>
             <input
               type="text"
               className="form-control"
-              id="taiKhoan"
-              placeholder="taiKhoan"
+              id="tenPhim"
+              placeholder="tenPhim"
+              name="tenPhim"
+              onChange={handleChange}
             />
           </div>
           <button type="submit" className="btn btn-primary mb-2">
@@ -118,7 +138,7 @@ const QuanLyPhim = () => {
           <Pagination
             activePage={state.activePage}
             itemsCountPerPage={10}
-            totalItemsCount={movieListShowing.length}
+            totalItemsCount={movieListShowingFil?.movieList?.length}
             pageRangeDisplayed={5}
             onChange={handlePageChange}
           />

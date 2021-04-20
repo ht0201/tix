@@ -21,9 +21,14 @@ export const getLoginAPI = (user, history) => {
       data: user,
     })
       .then((res) => {
+        console.log(res.data);
         dispatch(getLoginAction(res.data));
         localStorage.setItem("userLogin", JSON.stringify(res.data));
-        history.goBack();
+        if (res.data.maLoaiNguoiDung === "QuanTri") {
+          history.push("/admin/quanlyphim");
+        } else {
+          history.goBack();
+        }
       })
       .catch((err) => {
         console.log(err);

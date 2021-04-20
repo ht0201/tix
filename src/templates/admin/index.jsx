@@ -11,7 +11,6 @@ import { getListMovieShowingAPI } from "../../redux/actions/movie.action";
 // import "./styles.scss";
 import { MDBDataTable } from "mdbreact";
 
-// import Pagination from "react-js-pagination";
 import { useState } from "react";
 
 const AdminLayout = (props) => {

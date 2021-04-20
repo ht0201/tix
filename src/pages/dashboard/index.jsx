@@ -174,52 +174,6 @@ const Dashboard = () => {
               </ul>
             </div>
           </nav>
-          {/* <div className="container-fluid">
-            <NavLink to="/admin/themphim" className="linkToThemPhim">
-              <h1 className="mt-4"> Them phim</h1>
-            </NavLink>
-            <form className="form-inline">
-              <div className="form-group mx-sm-3 mb-2">
-                <label htmlFor="taiKhoan" className="sr-only">
-                  taiKhoan
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="taiKhoan"
-                  placeholder="taiKhoan"
-                />
-              </div>
-              <button type="submit" className="btn btn-primary mb-2">
-                Tim
-              </button>
-            </form>
-
-            <div className="table-pagination">
-              <table className="table table-bordered">
-                <thead className="thead-dark">
-                  <tr>
-                    <th scope="col">Ma phim</th>
-                    <th scope="col">Ten phim</th>
-                    <th scope="col">Hinh anh</th>
-                    <th scope="col">Mo ta</th>
-                    <th scope="col">Ma nhom</th>
-                    <th scope="col">Ngay khoi chieu</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>{renderMovieItem()}</tbody>
-              </table>
-
-              <Pagination
-                activePage={state.activePage}
-                itemsCountPerPage={10}
-                totalItemsCount={movieListShowing.length}
-                pageRangeDisplayed={5}
-                onChange={handlePageChange}
-              />
-            </div>
-          </div> */}
         </div>
         {/* /#page-content-wrapper */}
       </div>
