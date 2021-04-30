@@ -66,6 +66,9 @@ export default function Header() {
         <>
           <li className="nav-item ">
             Chào, <b className="nav-link user"> {userLogin.taiKhoan}</b>
+            <NavLink className="admin" to="/admin/quanlyphim">
+              Admin
+            </NavLink>
             <NavLink className="profile" to="/profile">
               Profile
             </NavLink>

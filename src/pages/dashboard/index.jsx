@@ -90,7 +90,11 @@ const Dashboard = () => {
       <div className="d-flex" id="wrapper">
         {/* Sidebar */}
         <div className="bg-light border-right" id="sidebar-wrapper">
-          <div className="sidebar-heading">Start Bootstrap </div>
+          <div className="sidebar-heading">
+            <NavLink to="/" className="navbar-brand" href="dddd">
+              <img src="/images/web-logo.png" alt="logo" />
+            </NavLink>{" "}
+          </div>
           <div className="list-group list-group-flush">
             <a
               href="avv"

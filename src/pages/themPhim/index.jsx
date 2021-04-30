@@ -66,6 +66,24 @@ export default function ThemPhim() {
   function handleChangeFileInputImage(e) {
     var fileName = e.target.value.split("\\").pop();
     document.getElementById("custom-file-label").innerHTML = fileName;
+
+    e.preventDefault();
+
+    let name = e.target.name;
+    let value = e.target.value;
+
+    console.log(name, fileName);
+
+    if (name === "hinhAnh") {
+      let newValue = fileName;
+
+      console.log(newValue);
+      setMoive({
+        ...movie,
+        [name]: newValue,
+      });
+      return;
+    }
   }
 
   return (
@@ -135,23 +153,23 @@ export default function ThemPhim() {
             />
           </div>
           <div className="col">
-            <label> Trailer </label>
+            {/* <label> hinhAnh </label>
             <input
               type="text"
               className="form-control"
               placeholder="hinhAnh"
               name="hinhAnh"
               onChange={handleChange}
-            />
-            {/* <p>Custom file:</p>
+            /> */}
+            <label> hinhAnh </label>
             <div className="custom-file mb-3">
               <input
                 type="file"
                 className="custom-file-input"
                 id="customFile"
                 name="hinhAnh"
-                // onChange={handleChangeFileInputImage}
-                onChange={handleChange}
+                onChange={handleChangeFileInputImage}
+                // onChange={handleChange}
               />
               <label
                 id="custom-file-label"
@@ -161,7 +179,7 @@ export default function ThemPhim() {
               >
                 Choose file
               </label>
-            </div> */}
+            </div>
           </div>
         </div>
         <div className="row">

@@ -27,6 +27,20 @@ export const createMovieAPI = (newMovie) => {
         },
       });
       console.log(res);
+      //---------------
+      var frm = new FormData();
+      frm.append("File", File, res.data.hinhAnh);
+      frm.append("tenphim", res.data.tenphim);
+      frm.append("manhom", "GP01");
+
+      const upImage = await axios({
+        method: "POST",
+        url:
+          "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/UploadHinhAnhPhim",
+        data: frm,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      console.log("upImage", upImage);
     } catch (err) {
       console.log(err);
     }
