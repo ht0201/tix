@@ -47,7 +47,7 @@ export default function Carousel() {
           </div>
         );
       })
-      .slice(84, 89);
+      .slice(3, 6);
   }
 
   function openModal(status, item) {
