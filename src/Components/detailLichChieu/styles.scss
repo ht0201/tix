@@ -22,7 +22,7 @@
             text-decoration: none;
 
             padding: 0.8rem;
-            border-bottom: 1px solid #FFF;
+            border-bottom: 1px solid #DDD;
             height: 4.5rem;
 
             img {
@@ -53,8 +53,9 @@
    .listDayOfWeek {
       padding: 0;
       margin: 0;
-      border-left: 1px solid #EEE;
+      border-left: 1px solid #DDD;
       height: 100%;
+
 
       //       ::-webkit-scrollbar {
       //    height: 5px;
@@ -78,11 +79,13 @@
          // height: 4.5rem;
          display: flex;
          align-items: center;
-         padding: 1rem 0;
+         padding-bottom: 1rem;
+         padding-top: 0.5rem;
          overflow-x: auto;
          overflow-y: hidden;
          width: 100%;
          background-color: #FFF;
+         border-bottom: 1px solid #DDD;
 
          .listDay {
             list-style: none;

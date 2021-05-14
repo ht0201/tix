@@ -21,7 +21,7 @@ const initialState = {
   lichChieuTheoHeThongRap: {},
   listNgayChieu: [],
   listHeThongRap: [],
-  listCumRap: [],
+  objCumRap: [],
   listMovieRap: {},
   listRapOpt: [],
   movieFilter: [],
@@ -87,28 +87,27 @@ const movieReducer = (state = initialState, action) => {
     }
 
     case GET_LIST_CUM_RAP: {
-      console.log("listCumRap", payload);
-      return { ...state, listCumRap: payload };
+      console.log("objCumRap", payload);
+      return { ...state, objCumRap: payload };
     }
 
     case GET_LIST_MOVIE_RAP: {
-      console.log(state.listCumRap);
-      const newListCumRap = state.listCumRap;
+      const newObjCumRap = state.objCumRap;
 
-      const listMovie = newListCumRap[0]?.lstCumRap.find((rap, index) => {
-        const dk = rap.maCumRap === payload;
+      const listMovie = newObjCumRap[0]?.lstCumRap.find((rap, index) => {
+        const dk = rap.maCumRap === payload.maCumRap;
         return dk;
       });
 
       console.log("listMovie", listMovie);
 
-      const list = state.movieDetail;
+      // const list = state.movieDetail;
 
-      const thoiLuong = list.lichChieu?.find(
-        (movie) => movie.maPhim === JSON.parse(payload.maPhim)
-      );
+      // const thoiLuong = list.lichChieu?.find(
+      //   (movie) => movie.maPhim === JSON.parse(payload.maPhim)
+      // );
 
-      console.log("thoiLuong", thoiLuong);
+      // console.log("thoiLuong", thoiLuong);
 
       return { ...state, listMovieRap: listMovie };
     }

@@ -6,14 +6,18 @@
                .acc__collapse {
                   .card-body {
                      .listSuatChieu {
-                        .suatChieu {
-                           height: auto;
-                           margin-right: 0;
-                           flex: 0 0 25%;
-                           max-width: 25%;
+                        .wrapSuatChieu {
+                           width: 25%;
+                           text-align: center;
+                           margin: 0.4rem 0;
 
-                           &:hover {
-                              text-decoration: none;
+                           .suatChieu {
+                              padding: 0.3rem;
+                              margin-right: 0;
+
+                              &:hover {
+                                 text-decoration: none;
+                              }
                            }
                         }
                      }

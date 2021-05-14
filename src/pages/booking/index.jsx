@@ -50,9 +50,9 @@ function Booking() {
   // api lay list ve
   useEffect(function () {
     // set timer when booking loading
-    var fiveMinutes = 60 * 5,
-      display = document.querySelector("#timer");
-    startTimer(fiveMinutes, display);
+    // var fiveMinutes = 60 * 5,
+    //   display = document.querySelector("#timer");
+    // startTimer(fiveMinutes, display);
 
     dispatch(getListTicketAPI(code));
   }, []);
@@ -144,25 +144,25 @@ function Booking() {
     dispatch(bookingTicketAPI(maLichChieu, listChairChoice, history));
   }
 
-  function startTimer(duration, display) {
-    var timer = duration,
-      minutes,
-      seconds;
-    setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
+  // function startTimer(duration, display) {
+  //   var timer = duration,
+  //     minutes,
+  //     seconds;
+  //   setInterval(function () {
+  //     minutes = parseInt(timer / 60, 10);
+  //     seconds = parseInt(timer % 60, 10);
 
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
+  //     minutes = minutes < 10 ? "0" + minutes : minutes;
+  //     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      display.textContent = minutes + ":" + seconds;
+  //     display.textContent = minutes + ":" + seconds;
 
-      if (--timer < 0) {
-        timer = duration;
-        alert("EXPRIED");
-      }
-    }, 1000);
-  }
+  //     if (--timer < 0) {
+  //       timer = duration;
+  //       alert("EXPRIED");
+  //     }
+  //   }, 1000);
+  // }
 
   return (
     <Guard>
@@ -182,10 +182,10 @@ function Booking() {
                   </p>
                 </div>
               </div>
-              <div className="header--right ml-auto">
-                <p>Thoi gian giu ghe</p>
-                <h4 id="timer"></h4>
-              </div>
+              {/* <div className="header--right ml-auto">
+                <p>Thời gian giữ ghế</p>
+                <h4 id="timer"> </h4>
+              </div> */}
             </div>
 
             <div className="img__screen mt-3">

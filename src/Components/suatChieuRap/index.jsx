@@ -61,20 +61,22 @@ export default function SuatChieuRap() {
         .utc()
         .startOf("day")
         .add({ minutes: plus })
-        .format("H:mm");
+        .format("HH:mm");
 
       return (
-        <NavLink
-          to={`/booking/${lc.maLichChieu}`}
-          className="suatChieu col-3"
-          key={index}
-        >
-          <span className="suatChieuIn">
-            {" "}
-            {format("hh:mm", new Date(lc?.ngayChieuGioChieu))} ~
-          </span>
-          <span className="suatChieuOut"> {out}</span>
-        </NavLink>
+        <div className="wrapSuatChieu" key={index}>
+          <NavLink
+            to={`/booking/${lc.maLichChieu}`}
+            className="suatChieu col-3"
+            key={index}
+          >
+            <span className="suatChieuIn">
+              {" "}
+              {format("hh:mm", new Date(lc?.ngayChieuGioChieu))} ~
+            </span>
+            <span className="suatChieuOut"> {out}</span>
+          </NavLink>
+        </div>
       );
     });
   }

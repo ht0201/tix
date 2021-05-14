@@ -160,7 +160,7 @@ const HomeTools = () => {
   return (
     <>
       <div className="container homeTools">
-        <div className="row">
+        <div className="row ">
           <div className="col-4">
             <form className="form-select">
               <select
@@ -185,7 +185,7 @@ const HomeTools = () => {
                   handleChangeOptRap();
                 }}
               >
-                <option defaultValue="Rap">Rap</option>
+                <option defaultValue="Rap">Rạp</option>
                 {renderListUniqueRap()}
               </select>
             </form>
@@ -200,7 +200,7 @@ const HomeTools = () => {
                   handleChangeOptNgayXem();
                 }}
               >
-                <option defaultValue="Ngay xem">Ngay xem</option>
+                <option defaultValue="Ngay xem">Ngày xem</option>
                 {renderListNgayXem()}
               </select>
             </form>
@@ -215,7 +215,7 @@ const HomeTools = () => {
                 //   handleChangeOptGioXem();
                 // }}
               >
-                <option defaultValue="Gio xem">Gio xem</option>
+                <option defaultValue="Gio xem">Giờ xem</option>
                 {renderListGioXem()}
               </select>
             </form>
@@ -227,7 +227,7 @@ const HomeTools = () => {
                 className="btn btn-secondary btnMuaVeNgay"
                 to={`/booking/${lichChieuChoice?.maLichChieu}`}
               >
-                MUA VE NGAY{" "}
+                MUA VÉ NGAY{" "}
               </NavLink>
             </div>
           </div>

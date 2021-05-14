@@ -19,26 +19,26 @@ export default function LichChieu() {
   const listHeThongRap = useSelector((state) => state).movieReducer
     .listHeThongRap;
 
-  const listCumRap = useSelector((state) => state).movieReducer.listCumRap;
-
-  const listMovieRap = useSelector((state) => state).movieReducer.listMovieRap;
+  const objCumRap = useSelector((state) => state).movieReducer.objCumRap;
 
   useEffect(() => {
     dispatch(getListHeThongRapAPI());
   }, []);
 
-  const [heThongRap, setHeThongRap] = useState("");
-
-  const [cumRap, setCumRap] = useState("");
-
-  useEffect(() => {
-    dispatch(getListCumRapAPI(heThongRap.heThongRap));
-  }, [heThongRap]);
+  const [state, setState] = useState({
+    maHeThongRap: "BHDStar",
+    maCumRap: "bhd-star-cineplex-bitexco",
+  });
 
   useEffect(() => {
-    console.log(cumRap);
-    dispatch(getListMovieRapAPI(cumRap.maCumRap));
-  }, [cumRap]);
+    dispatch(getListCumRapAPI(state.maHeThongRap));
+  }, [state]);
+
+  useEffect(() => {
+    console.log(state);
+
+    dispatch(getListMovieRapAPI(state.maHeThongRap, state.maCumRap));
+  }, [state]);
 
   function renderListHeThongRap() {
     return listHeThongRap?.map((heThongRap, index) => {
@@ -61,18 +61,34 @@ export default function LichChieu() {
   }
 
   function handleClickHeThongRap(heThongRap) {
-    setHeThongRap({
-      heThongRap: heThongRap.maHeThongRap,
+    setState({
+      maCumRap: setMaCumRap(heThongRap.maHeThongRap),
+      maHeThongRap: heThongRap.maHeThongRap,
     });
   }
 
+  function setMaCumRap(maHeThongRap) {
+    const newListHTR = [...listHeThongRap];
+    const rapFirstByHeThongRap = newListHTR.find((heThongRapItem) => {
+      const heThongRap = heThongRapItem.maHeThongRap === maHeThongRap;
+      return heThongRap;
+    });
+    console.log(
+      "rapFirstByHeThongRap",
+      rapFirstByHeThongRap.lstCumRap[0].maCumRap
+    );
+    return rapFirstByHeThongRap.lstCumRap[0].maCumRap;
+  }
+
   function renderCumRap() {
-    return listCumRap[0]?.lstCumRap.map((cumRap, index) => {
+    return objCumRap[0]?.lstCumRap.map((cumRap, index) => {
       return (
         <div
-          className={`listBrand row mb-3 ${index === 0 ? "active" : ""}`}
           key={index}
-          onClick={() => handleClickCumRap(cumRap)}
+          className={`listBrand row mb-3 ${
+            cumRap.maCumRap === state.maCumRap ? "active" : " "
+          }`}
+          onClick={() => handleClickCumRap(cumRap, index)}
         >
           <div className="img__card col-4">
             <img
@@ -94,14 +110,15 @@ export default function LichChieu() {
 
   function handleClickCumRap(cumRap) {
     console.log(cumRap);
-    setCumRap({
+    setState({
+      ...state,
       maCumRap: cumRap.maCumRap,
     });
   }
 
   return (
     <>
-      <div className="container d-flex lichChieu" id="lichChieu">
+      <div className="container d-flex lichChieu mt-3" id="lichChieu">
         <div className="row">
           <div
             className="nav flex-column nav-pills col-1"
@@ -111,12 +128,12 @@ export default function LichChieu() {
           >
             {renderListHeThongRap()}
           </div>
-          <div className="tab-content col-4" id="v-pills-tabContent">
+          <div className="tab-content col-4 listCumRap" id="v-pills-tabContent">
             <div
               className="tab-pane fade show active"
-              id={listCumRap[0]?.maHeThongRap}
+              id={objCumRap[0]?.maHeThongRap}
               role="tabpanel"
-              aria-labelledby={listCumRap[0]?.maHeThongRap}
+              aria-labelledby={objCumRap[0]?.maHeThongRap}
             >
               {renderCumRap()}
             </div>

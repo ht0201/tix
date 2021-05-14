@@ -102,8 +102,16 @@
          }
       }
 
+      // list cum rap
+      .listCumRap {
+         height: 100%;
+         overflow: hidden scroll;
+         border: 1px solid rgb(221, 221, 221);
+      }
+
 
       // listMoviesTheoRap
+
       .listMovies {
          padding: 0;
          height: 100%;

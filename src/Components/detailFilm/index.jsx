@@ -48,7 +48,7 @@ function DetailFilm() {
             <p> phut</p>
 
             <a href="#tab-lichChieu" className="btn__muaVe">
-              MUA VE
+              MUA VÉ
             </a>
           </div>
           <div className="col-3 point__rating">
@@ -64,7 +64,7 @@ function DetailFilm() {
                 <img src="./../images/star1.2.png" alt="star" />
               </div>
               <div className="feedBack">
-                <span>10 nguoi danh gia</span>
+                <span>10 người đánh giá</span>
               </div>
             </div>
           </div>
@@ -83,17 +83,17 @@ function DetailFilm() {
                     data-toggle="pill"
                     href="#home"
                   >
-                    Lich Chieu
+                    Lịch chiếu
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" data-toggle="pill" href="#menu1">
-                    Thong tin
+                    Thông tin
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" data-toggle="pill" href="#menu2">
-                    Danh gia
+                    Đánh giá
                   </a>
                 </li>
               </ul>

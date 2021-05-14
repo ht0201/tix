@@ -120,7 +120,7 @@ export default function News() {
             aria-controls="pills-home"
             aria-selected="true"
           >
-            Dien anh 24h
+            Điện ảnh 24h
           </a>
         </li>
         <li className="nav-item">
@@ -146,7 +146,7 @@ export default function News() {
             aria-controls="pills-contact"
             aria-selected="false"
           >
-            Khuyen mai
+            Khuyến mãi
           </a>
         </li>
       </ul>

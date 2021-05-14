@@ -30,7 +30,7 @@ export default function ListFilmBlock() {
   function renderListFilm() {
     return movieListShowing?.map((itemFilm, index) => {
       return (
-        <div className="listFilmBlock mt-4 mb-5" key={index}>
+        <div className="listFilmBlock mt-2" key={index}>
           <ItemFilmBlock itemFilm={itemFilm} movieDetail={movieDetail} />
         </div>
       );

@@ -122,16 +122,16 @@ export const getListCumRapAction = (listCumRap) => {
   };
 };
 
-export const getListCumRapAPI = (maHeThong = "BHDStar") => {
-  console.log(maHeThong);
+export const getListCumRapAPI = (maHeThongRap = "BHDStar") => {
+  console.log(maHeThongRap);
   return (dispacth) => {
     axios({
       method: "GET",
-      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThong}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}`,
     })
       .then((res) => {
         dispacth(getListCumRapAction(res.data));
-        getListMovieRapAPI();
+        // getListMovieRapAPI();
       })
       .catch((err) => {
         console.log(err);
@@ -139,17 +139,30 @@ export const getListCumRapAPI = (maHeThong = "BHDStar") => {
   };
 };
 
-export const getListMovieTheoRapAction = (listMovieRap) => {
+export const getListMovieTheoRapAction = (maHeThongRap, maCumRap) => {
   return {
     type: GET_LIST_MOVIE_RAP,
-    payload: listMovieRap,
+    payload: { maHeThongRap, maCumRap },
   };
 };
 
-export const getListMovieRapAPI = (maCumRap = "bhd-star-cineplex-bitexco") => {
+export const getListMovieRapAPI = (
+  maHeThongRap = "BHDStar",
+  maCumRap = "bhd-star-cineplex-bitexco"
+) => {
   console.log(maCumRap);
   return (dispacth) => {
-    dispacth(getListMovieTheoRapAction(maCumRap));
+    axios({
+      method: "GET",
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}`,
+    })
+      .then((res) => {
+        dispacth(getListMovieTheoRapAction(res.data, maCumRap));
+        // getListMovieRapAPI();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 

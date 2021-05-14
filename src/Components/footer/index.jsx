@@ -32,7 +32,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="col-4 item">
-            <h5>DOI TAC</h5>
+            <h5>ĐỐI TÁC</h5>
             <div className="row row__doitac">
               <div className="img">
                 <img src="/images/galaxycine.png" alt="" />
