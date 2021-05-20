@@ -2,11 +2,15 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getListMovieShowingAdminAPI } from "../../redux/actions/admin.quanlyphim.action";
+import {
+  getListMovieShowingAdminAPI,
+  removeMovieAPI,
+} from "../../redux/actions/admin.quanlyphim.action";
 // import "./styles.scss";
 
 import Pagination from "react-js-pagination";
 import { useState } from "react";
+import moment from "moment";
 
 const QuanLyPhim = () => {
   const dispatch = useDispatch();
@@ -48,7 +52,9 @@ const QuanLyPhim = () => {
             </td>
             <td>{movie.moTa}</td>
             <td>{movie.maNhom}</td>
-            <td>{movie.ngayKhoiChieu}</td>
+            <td>
+              {moment(new Date(movie.ngayKhoiChieu)).format("DD/MM/YYYY")}
+            </td>
             <td>
               <button
                 className="btn btn-success"
@@ -56,19 +62,23 @@ const QuanLyPhim = () => {
                 data-toggle="modal"
                 data-target="#myModal"
               >
-                Tao lich chieu
+                Tạo lịch chiếu
               </button>
-              <button
-                className="btn btn-secondary"
-                onClick={() => handleEditSchedule()}
+              <NavLink
+                to={{
+                  pathname: "/admin/suaphim",
+                  movie: movie,
+                }}
+                className="linkToSuaPhim"
               >
-                Sua
-              </button>
+                <button className="btn btn-secondary">Sửa</button>
+              </NavLink>
+
               <button
                 className="btn btn-danger"
-                onClick={() => handleDeleteSchedule()}
+                onClick={() => handleDelMovie(movie.maPhim)}
               >
-                Xoa
+                Xoá
               </button>
             </td>
           </tr>
@@ -78,8 +88,13 @@ const QuanLyPhim = () => {
   }
 
   function handleCreateSchedule() {}
-  function handleEditSchedule() {}
-  function handleDeleteSchedule() {}
+  // function handleEditMovie(movie) {
+  // }
+  function handleDelMovie(maPhim) {
+    // e.preventDefault();
+    console.log(maPhim);
+    dispatch(removeMovieAPI(maPhim));
+  }
 
   const handlePageChange = (pageNumber) => {
     console.log("pageNumber", pageNumber);

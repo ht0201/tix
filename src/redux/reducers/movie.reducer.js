@@ -52,17 +52,16 @@ const movieReducer = (state = initialState, action) => {
     }
 
     case GET_LIST_LICH_CHIEU_HTR_DETAIL: {
-      const lichChieuTheoHeThongRap = payload.lichChieuTheoHeThongRap?.heThongRapChieu?.find(
-        (cumRap) => {
+      const lichChieuTheoHeThongRap =
+        payload.lichChieuTheoHeThongRap?.heThongRapChieu?.find((cumRap) => {
           const listHTRFilter = cumRap.maHeThongRap === payload.maHeThongRap;
           return listHTRFilter;
-        }
-      );
-
-      console.log("lichChieuTheoHeThongRap", lichChieuTheoHeThongRap);
+        });
 
       const listNgayChieu = lichChieuTheoHeThongRap?.cumRapChieu.map(
         (cumRap, indexLCP) => {
+          let dayFil = payload.ngayChieu.slice(0, 10);
+          console.log(dayFil);
           const lcFilter = cumRap.lichChieuPhim.filter((lc) => {
             return (
               lc.ngayChieuGioChieu.slice(0, 10) ===
@@ -70,9 +69,24 @@ const movieReducer = (state = initialState, action) => {
             );
           });
 
-          return { ...cumRap, lcFilter };
+          return { ...cumRap, lcFilter, dayFil };
         }
       );
+
+      let arrFil = [];
+      const listFil = listNgayChieu.map((lc, index) => {
+        if (lc.lcFilter.length !== 0) {
+          return arrFil.push(lc);
+        }
+      });
+      console.log("listFil", listFil);
+      console.log("arrFil", arrFil);
+
+      const uniqueDay = listFil?.filter(
+        (item, index, listFil) => listFil?.indexOf(item) === index
+      );
+
+      console.log("uniqueDay", uniqueDay);
 
       return {
         ...state,

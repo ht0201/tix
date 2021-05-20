@@ -31,15 +31,35 @@ const DetailLichChieu = () => {
   const listNgayChieu = useSelector((state) => state).movieReducer
     .listNgayChieu;
 
+  const movieDetail = useSelector((state) => state).movieReducer.movieDetail;
+
+  console.log("listNgayChieu", listNgayChieu);
+
   console.log("lichChieuTheoHeThongRap", lichChieuTheoHeThongRap);
 
   const { id } = useParams();
 
-  const [maHeThongRap, setMaHeThongRap] = useState("");
-  const [ngayChieu, setNgayChieu] = useState("");
+  const [maHeThongRap, setMaHeThongRap] = useState({
+    maHeThongRap: "BHDStar",
+  });
+
+  const [ngayChieu, setNgayChieu] = useState({
+    ngayChieu: "",
+  });
+
+  // const [state, setState] = useState({
+  //   maHeThongRap: "BHDStar",
+  //   ngayChieu: "",
+  // });
+
+  useEffect(function () {
+    dispatch(getListHeThongRapAPI());
+  }, []);
 
   useEffect(
     function () {
+      // console.log("state", state);
+      console.log("maHeThongRap", maHeThongRap);
       dispatch(
         getListLichChieuHTRAPI(
           id,
@@ -51,14 +71,7 @@ const DetailLichChieu = () => {
     [maHeThongRap, ngayChieu]
   );
 
-  useEffect(
-    function () {
-      dispatch(getListHeThongRapAPI());
-    },
-    [maHeThongRap]
-  );
-
-  function renderRap() {
+  function renderLichChieuDetailByHTR() {
     return listNgayChieu?.map((rap, indexRap) => {
       if (rap.lcFilter.length !== 0) {
         return (
@@ -130,25 +143,27 @@ const DetailLichChieu = () => {
     return lichChieuTheoHeThongRap?.cumRapChieu?.map((rap, indexRap) => {
       return rap.lichChieuPhim?.map((lc, indexLc) => {
         return (
-          <a
+          <p
             key={indexLc}
-            className={`dayItem ${indexLc === 0 ? "active" : " "}`}
+            className={`dayItem ${indexRap === 0 ? "active" : " "}`}
             onClick={() => handleChangeNgayChieu(lc.ngayChieuGioChieu)}
           >
             <p>{getDayOfWeek(lc.ngayChieuGioChieu.slice(0, 10))}</p>
             <h5> {lc.ngayChieuGioChieu.slice(8, 10)}</h5>
-          </a>
+          </p>
         );
       });
     });
   }
 
   function renderListHeThongRap() {
-    return listHeThongRap?.map((rap, index) => {
+    return movieDetail?.heThongRapChieu?.map((rap, index) => {
       return (
         <a
           key={index}
-          className={`rap__item ${index === 0 ? "active" : " "}`}
+          className={`rap__item ${
+            rap.maHeThongRap === maHeThongRap.maHeThongRap ? "active" : " "
+          }`}
           id={rap.maHeThongRap}
           data-toggle="pill"
           href={`#${rap.maHeThongRap}`}
@@ -168,6 +183,9 @@ const DetailLichChieu = () => {
     console.log("heThongRap chon", rap);
     setMaHeThongRap({
       maHeThongRap: rap.maHeThongRap,
+    });
+    setNgayChieu({
+      ngayChieu: "",
     });
   }
 
@@ -190,7 +208,7 @@ const DetailLichChieu = () => {
           </div>
           <div className="tab-content">
             <div className="tab-pane container active " id="home">
-              {renderRap()}
+              {renderLichChieuDetailByHTR()}
             </div>
           </div>
         </div>

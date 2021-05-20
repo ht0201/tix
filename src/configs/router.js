@@ -9,6 +9,7 @@ import Profile from "../pages/profile";
 import QuanLyPhim from "../pages/quanLyPhim";
 import Admin from "../pages/admin/admin";
 import ThemPhim from "../pages/themPhim";
+import SuaPhim from "../pages/suaPhim";
 
 export const mainRouter = [
   {
@@ -64,5 +65,10 @@ export const adminRouter = [
     path: "/admin/themphim",
     exact: false,
     Components: ThemPhim,
+  },
+  {
+    path: "/admin/suaphim",
+    exact: false,
+    Components: SuaPhim,
   },
 ];

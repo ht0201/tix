@@ -23,8 +23,7 @@ export const getListMovieShowingAPI = () => {
     //call api
     axios({
       method: "GET",
-      url:
-        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
     })
       .then((res) => {
         // console.log(res.data);
@@ -74,7 +73,7 @@ export const getListLichChieuHTRAction = (
 export const getListLichChieuHTRAPI = (
   id,
   maHeThongRap = "BHDStar",
-  ngayChieu = "2019-01-01T10:10:00"
+  ngayChieu
 ) => {
   console.log(maHeThongRap, ngayChieu);
   return (dispacth) => {
@@ -217,8 +216,7 @@ export const getListMovieComingSoonAPI = () => {
     //call api
     axios({
       method: "GET",
-      url:
-        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP02",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP02",
     })
       .then((res) => {
         // console.log(res.data);

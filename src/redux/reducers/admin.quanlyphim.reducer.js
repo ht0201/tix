@@ -1,4 +1,9 @@
-import { GET_LIST_MOVIE_SHOWING_FIL } from "../constants/admin.quanlyphim.constants";
+import {
+  GET_LIST_MOVIE_SHOWING_FIL,
+  SUA_PHIM,
+  THEM_PHIM,
+  XOA_PHIM,
+} from "../constants/admin.quanlyphim.constants";
 
 const initialState = {
   movieListShowingFil: {},
@@ -61,6 +66,22 @@ const adminQuanLyPhimReducer = (state = initialState, action) => {
       console.log("movieList", movieList);
 
       return { movieListShowingFil: payload, movieList: movieList };
+    }
+
+    case THEM_PHIM: {
+      state.movieList.push(payload);
+      return { ...state };
+    }
+    case XOA_PHIM: {
+      state.movieList = state.movieList.filter(
+        (movie) => movie.maPhim !== payload
+      );
+      return { ...state };
+    }
+
+    case SUA_PHIM: {
+      console.log(payload);
+      return;
     }
 
     default:

@@ -6,36 +6,67 @@ import DateTimePicker from "react-datetime-picker";
 import "./styles.scss";
 
 import {
-  createMovieAPI,
+  updateMovieAPI,
+  updateMovieNoImageAPI,
   upLoadHinh,
 } from "../../redux/actions/admin.quanlyphim.action";
 import { useDispatch } from "react-redux";
-import format from "date-format";
-import { useHistory } from "react-router-dom";
+import format from "dateformat";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 
-export default function ThemPhim() {
+export default function SuaPhim() {
   const dispatch = useDispatch();
   let history = useHistory();
-  // const [value, onChange] = useState(new Date());
-  const [movie, setMovie] = useState({});
-  const [file, setFile] = useState({});
+  let location = useLocation();
+  const editMovie = location.movie;
 
-  function handleCreateMovie(e) {
+  var contents = editMovie.hinhAnh.toString();
+  var blob = new Blob([contents], { type: "text/plain" });
+  var newFile = new File([blob], contents.split("/").pop(), {
+    type: "text/plain",
+  });
+
+  const [file, setFile] = useState({
+    fileUpLoad: newFile,
+  });
+
+  const [movie, setMovie] = useState({
+    maPhim: editMovie.maPhim,
+    tenPhim: editMovie.tenPhim,
+    trailer: editMovie.trailer,
+    maNhom: editMovie.maNhom,
+    moTa: editMovie.moTa,
+    ngayKhoiChieu: format(new Date(editMovie.ngayKhoiChieu), "dd/mm/yyyy"),
+    danhGia: editMovie.danhGia,
+    hinhAnh: file.fileUpLoad.name,
+    biDanh: editMovie.biDanh,
+  });
+  // console.log(movie.ngayKhoiChieu);
+  console.log(movie);
+
+  function handleUpdateMovie(e) {
     e.preventDefault();
-
-    console.log(movie);
-    console.log(file.fileUpLoad);
-    dispatch(createMovieAPI(movie, history, file.fileUpLoad));
+    console.log(file.fileUpLoad.name);
+    console.log(editMovie.hinhAnh);
+    if (file.fileUpLoad.name === editMovie.hinhAnh.split("/").pop()) {
+      console.log("giong");
+      dispatch(updateMovieNoImageAPI(movie, history));
+    } else {
+      console.log("khacs");
+      dispatch(updateMovieAPI(movie, history, file.fileUpLoad));
+    }
   }
 
   function handleChange(e) {
     e.preventDefault();
     let name = e.target.name;
     let value = e.target.value;
+
     if (name === "ngayKhoiChieu") {
+      console.log(value);
       setMovie({
         ...movie,
-        [name]: format("dd-MM-yyyy", new Date(value)),
+        [name]: format(new Date(value), "dd/mm/yyyy"),
       });
       return;
     } else if (name === "danhGia") {
@@ -56,10 +87,10 @@ export default function ThemPhim() {
     e.preventDefault();
     let name = e.target.name;
     let value = e.target.files[0];
-
+    console.log(name, value);
     setMovie({
       ...movie,
-      [name]: value.name,
+      [name]: value?.name,
     });
     setFile({
       fileUpLoad: value,
@@ -73,7 +104,7 @@ export default function ThemPhim() {
 
   return (
     <>
-      <form onSubmit={handleCreateMovie}>
+      <form onSubmit={handleUpdateMovie}>
         <div className="row">
           <div className="col">
             <label> ma Phim </label>
@@ -82,7 +113,9 @@ export default function ThemPhim() {
               className="form-control"
               placeholder="maPhim"
               name="maPhim"
+              value={movie.maPhim}
               onChange={handleChange}
+              disabled
             />
           </div>
           <div className="col">
@@ -100,6 +133,7 @@ export default function ThemPhim() {
               className="form-control"
               placeholder="ngayKhoiChieu"
               name="ngayKhoiChieu"
+              value={movie.ngayKhoiChieu}
               onChange={handleChange}
             />
           </div>
@@ -112,6 +146,7 @@ export default function ThemPhim() {
               className="form-control"
               placeholder="tenPhim"
               name="tenPhim"
+              value={movie.tenPhim}
               onChange={handleChange}
             />
           </div>
@@ -122,6 +157,7 @@ export default function ThemPhim() {
               className="form-control"
               placeholder="danhGia"
               name="danhGia"
+              value={movie.danhGia}
               onChange={handleChange}
             />
           </div>
@@ -134,6 +170,7 @@ export default function ThemPhim() {
               className="form-control"
               placeholder="trailer"
               name="trailer"
+              value={movie.trailer}
               onChange={handleChange}
             />
           </div>
@@ -143,20 +180,12 @@ export default function ThemPhim() {
               <input
                 type="file"
                 className="custom-file-input"
-                id="customFile"
+                id="hinhAnh"
                 name="hinhAnh"
                 style={{ opacity: 1 }}
+                // value={file.hinhAnh}
                 onChange={handleChangeFileInputImage}
-                // onChange={handleChange}
               />
-              {/* <label
-                id="custom-file-label"
-                className="custom-file-label"
-                htmlFor="hinhAnh"
-                onChange={handleChange}
-              >
-                Choose file
-              </label> */}
             </div>
           </div>
         </div>
@@ -168,6 +197,7 @@ export default function ThemPhim() {
               className="form-control"
               placeholder="maNhom"
               name="maNhom"
+              value={movie.maNhom}
               onChange={handleChange}
             />
           </div>
@@ -178,6 +208,7 @@ export default function ThemPhim() {
               className="form-control"
               placeholder="biDanh"
               name="biDanh"
+              value={movie.biDanh}
               onChange={handleChange}
             />
           </div>
@@ -190,6 +221,7 @@ export default function ThemPhim() {
             placeholder="moTa"
             name="moTa"
             rows="3"
+            value={movie.moTa}
             onChange={handleChange}
           />
         </div>
@@ -199,10 +231,11 @@ export default function ThemPhim() {
           value="Submit"
           className="btn btn-primary mr-2 mt-2"
         >
-          {" "}
-          Tạo{" "}
+          Cập nhật
         </button>
-        <button className="btn btn-secondary mt-2"> Huỷ </button>
+        <NavLink to="/admin/quanlyphim">
+          <button className="btn btn-secondary mt-2">Huỷ</button>
+        </NavLink>
       </form>
     </>
   );
